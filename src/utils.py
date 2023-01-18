@@ -38,6 +38,49 @@ def oo(t):
     print(o(t))
     return t
 
+seed=937162211
+def rint(low, high):
+
+    """
+    Returns a integer value closest to specified value
+        
+    Parameters
+    ----------
+    low : int
+        lower bound
+    places  : int
+        upper bound 
+
+    Returns
+    -------
+    int
+    """
+    
+    return math.floor(0.5 + rand(low, high))
+
+def rand(low, high):
+    
+    """
+    Returns a random number between 0 and 1
+        
+    Parameters
+    ----------
+    low : int
+        lower bound
+    places  : int
+        upper bound 
+
+    Returns
+    -------
+    int
+    """
+    
+    low = low or 0
+    high = high or 1
+    seed = (16807 * seed) % 2147483647
+    result = low + (high-low) * seed / 2147483647
+    return result
+
 def rnd(x, places):
     """
         Rounds of to nearest integer upto specified places.
