@@ -1,10 +1,8 @@
 import random
-import csv
 import sys
 sys.path.append(sys.path[0]+'\\..\\src\\')
 from num_class import Num
 from sym_class import Sym
-from misc import *
 from utils import *
 
 eg={}
