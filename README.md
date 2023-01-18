@@ -14,8 +14,27 @@
 <img src="https://github.com/Mansimran7/ASE_Group12_Hws/blob/devanshi-dev/luatopython_group12.gif" width="400" height="320"/>
 
 ## Table of Contents:
-1. Introduction
-2. Getting Started
-3. License
-4. Directory Structure
-5. Contributors
+1. [Introduction](#introduction)
+2. [Getting Started](#getting-started)
+3. [License](#license)
+4. [Directory Structure](#directory-structure)
+5. [Contributors](#contributors)
+
+## Introduction
+
+## Getting Started
+
+## License
+This project is licensed under [MIT](https://mit-license.org/).
+Further details regarding the license can be found [here](https://github.com/Mansimran7/ASE_Group12_Hws/blob/main/LICENSE.md).
+
+## Directory Structure
+
+## Contributors
+1. [Devanshi Savla](https://github.com/devanshi39)
+2. [Indranil Banerjee](https://github.com/indranil1)
+3. [Mansimran Singh Anand](https://github.com/Mansimran7)
+
+To find out how you can contribute to this project, read the [CONTRIBUTING.md](https://github.com/Mansimran7/ASE_Group12_Hws/blob/main/CONTRIBUTING.md) file
+
+The discord chat channel link is included in the file [CONTRIBUTING.md](https://github.com/Mansimran7/ASE_Group12_Hws/blob/main/CONTRIBUTING.md)
