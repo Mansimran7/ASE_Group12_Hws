@@ -1,5 +1,5 @@
 # ASE_Group12_Hws
-![DOI](https://zenodo.org/badge/589421644.svg)](https://zenodo.org/badge/latestdoi/589421644)
+![DOI](https://zenodo.org/badge/589421644.svg)
 ![GitHub language count](https://img.shields.io/github/languages/count/Mansimran7/ASE_Group12_Hws)
 ![GitHub forks](https://img.shields.io/github/forks/Mansimran7/ASE_Group12_Hws?style=social)
 ![GitHub issues](https://img.shields.io/github/issues/Mansimran7/ASE_Group12_Hws)
