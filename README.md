@@ -1,4 +1,4 @@
-# Automated Software Engineering (2023)
+# Automated Software Engineering (2023) Lua to Python
 ![DOI](https://zenodo.org/badge/589421644.svg)
 ![GitHub](https://img.shields.io/github/license/Mansimran7/ASE_Group12_Hws)
 [![Python 3.8](https://img.shields.io/badge/python-3.8-blue.svg)](https://www.python.org/downloads/release/python-3100/)
@@ -11,7 +11,7 @@
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Mansimran7/ASE_Group12_Hws)
 ![GitHub contributors](https://img.shields.io/github/contributors/Mansimran7/ASE_Group12_Hws)
 
-![Alt-Text](https://github.com/Mansimran7/ASE_Group12_Hws/luatopython_group12.gif)
+<img src="https://github.com/Mansimran7/ASE_Group12_Hws/blob/devanshi-dev/luatopython_group12.gif" width="400" height="320"/>
 
 ## Table of Contents:
 1. Introduction
