@@ -19,3 +19,6 @@ We expect that you will write appropriate commit messages that give enough infor
 1. [Devanshi Savla](https://github.com/devanshi39)
 2. [Indranil Banerjee](https://github.com/indranil1)
 3. [Mansimran Singh Anand](https://github.com/Mansimran7)
+
+# Discord Server
+Link to join the discord server is [here](https://discord.gg/5rEG6unj)
