@@ -1,7 +1,6 @@
 import math
 import random
 from maths import per
-from misc import the
 
 class Num:
     """

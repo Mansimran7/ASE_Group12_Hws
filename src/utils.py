@@ -1,5 +1,5 @@
 import math
-from misc import the,coerce
+# from misc import the,coerce
 
 def o(t):
     """
@@ -98,29 +98,3 @@ def rnd(x, places):
         """
     mult = pow(10, places or 2)
     return math.floor(x * mult + 0.5) / mult
-
-def csv(fname, sep=None, src=None, s=None, t=None):
-    """
-        Reads the csv file and  Call fun() on each row to add the rows in the data object.
-        Row cells are divided in the.seperator.
-
-        Parameters
-        ----------
-
-        fname : str
-                location of the csv file to be read
-        
-        Returns
-        -------
-        None
-        """
-    sep = the["sep"]
-    with open(fname) as src:
-        while s := src.readline().rstrip():
-            t = {}
-            for y in s.split(sep):
-                print(y)
-                try:
-                    t[1 + len(t)] = coerce(y)
-                except:
-                    pass
