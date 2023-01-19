@@ -47,7 +47,7 @@ class Num:
         # self.isSorted = True
 
 
-    def add(self, n):
+    def add(self, v):
         """
         Increments the total no. of numbers seen so far and total no. of a particular number seen so far by
         maintaining a Reservoir sampler that keeps at most the.nums numbers which are uniformally spaced. 
@@ -62,13 +62,13 @@ class Num:
         -------
         None
         """
-        if n!="?":
+        if v!="?":
             self.n = self.n+1
-            d = self.n - self.mu
+            d = v - self.mu
             self.mu = self.mu + d/self.n
-            self.m2 = self.m2 + d*(n - self.mu)
-            self.lo = min(n, self.lo)
-            self.hi = max(n, self.hi)
+            self.m2 = self.m2 + d*(v - self.mu)
+            self.lo = min(v, self.lo)
+            self.hi = max(v, self.hi)
 
     def div(self):
         """
@@ -80,7 +80,7 @@ class Num:
         -------
         int
         """
-        return (self.m2 < 0 or self.n < 2) and 0 or math.pow((self.m2/(self.n-1)), 0.5)
+        return (self.m2 < 0 or self.n < 2) and (self.m2/(self.n-1))**(0.5)
 
     def mid(self):
         """

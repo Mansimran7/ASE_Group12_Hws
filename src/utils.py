@@ -1,4 +1,5 @@
 import math
+from help import *
 # from misc import the,coerce
 
 def o(t):
@@ -38,7 +39,6 @@ def oo(t):
     print(o(t))
     return t
 
-seed=937162211
 def rint(low, high):
 
     """
@@ -96,5 +96,5 @@ def rnd(x, places):
         -------
         int
         """
-    mult = pow(10, places or 2)
+    mult = pow(10, places or 3)
     return math.floor(x * mult + 0.5) / mult
