@@ -27,11 +27,11 @@ class Sym:
         Calculates the diversity of a symbol.
     """
 
-    def __init__(self, c = 0, s = ""):
+    def __init__(self):
         self.n = 0
-        self.at = c
-        self.name = s
-        self._has = dict()
+        self.has = {}
+        self.most = 0
+        self.mode = None
 
     def add(self, v):
         """
@@ -48,10 +48,10 @@ class Sym:
         """
         if v!="?":
             self.n=self.n+1
-            if v in self._has:
-                self._has[v] += 1
-            else:
-                self._has[v] = 1
+            self.has[v] = 1 + (self.has[v] if v in self.has.keys() else 0)
+            if self.has[v] > self.most:
+                self.most = self.has[v]
+                self.mode = v
 
     def mid(self):
         """
@@ -63,12 +63,7 @@ class Sym:
         -------
         int
         """
-        most=-1
-        for k in self._has:
-            v=self._has[k]
-            if v>most:
-                mode, most=k,v
-        return mode
+        return self.mode
 
     def div(self):
         """
@@ -83,8 +78,7 @@ class Sym:
         def fun(p):
             return p*(math.log(p,2))
         e=0
-        for k in self._has:
-            n=self._has[k]
-            if n>0:
-                e=e-fun(n/self.n)
-        return e
+        for k in self.has:
+            n=self.has[k]
+            e=e+fun(n/self.n)
+        return -e
