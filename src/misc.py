@@ -4,12 +4,9 @@ import re
 import sys
 
 the = {
-    "nums": 512,
-    "seed": 10019,
+    "seed": 937162211,
     "dump": False,
-    "file": "../data/auto93.csv",
     "eg": None,
-    "sep": ","
 }
 
 def coerce(s):

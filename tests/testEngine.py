@@ -22,9 +22,7 @@ def sym():
         sym.add(x)
     mode = sym.mid()
     entropy = sym.div()
-    entropy = 1000*entropy//1/1000
-    #oo({"mid":mode,"div":entropy})
-    return (mode =="a" and 1.37 <= entropy and entropy <= 1.38) 
+    return (mode =="a" and 1.379 == entropy and rnd(entropy,3))
 
 def num():
     """
@@ -39,8 +37,7 @@ def num():
         num.add(i)
     mid = num.mid()
     div = num.div()
-    #print(mid,div)
-    return (50<=mid and mid<=52 and 30.5<div and div<32)
+    return (1.571 == mid and 0.787 == rnd(div,3))
 
 def the_func():
     """
