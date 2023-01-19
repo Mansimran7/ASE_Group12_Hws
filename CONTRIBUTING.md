@@ -22,3 +22,5 @@ We expect that you will write appropriate commit messages that give enough infor
 
 # Discord Server
 Link to join the discord server is [here](https://discord.gg/5rEG6unj)
+
+![alt-Text](https://user-images.githubusercontent.com/112299103/213324737-bba18488-aaae-438c-94b3-c7ed911839a2.png)
