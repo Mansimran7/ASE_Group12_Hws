@@ -6,8 +6,6 @@ from sym_class import Sym
 from utils import *
 from misc import *
 
-eg={}
-
 def sym():
     """
     Test for symbols
@@ -22,7 +20,7 @@ def sym():
         sym.add(x)
     mode = sym.mid()
     entropy = sym.div()
-    return (mode =="a" and 1.379 == entropy and rnd(entropy,3))
+    return (mode =="a" and 1.379 == rnd(entropy,3))
 
 def num():
     """
@@ -33,11 +31,12 @@ def num():
     Bool
     """
     num = Num()
-    for i in range(1,101):
+    numbers=[1,1,1,1,2,2,3]
+    for i in numbers:
         num.add(i)
     mid = num.mid()
     div = num.div()
-    return (1.571 == mid and 0.787 == rnd(div,3))
+    return (11/7 == mid and 0.787 == rnd(div,3))
 
 def the_func():
     """
@@ -50,81 +49,81 @@ def the_func():
     oo(the)
     return True
 
-def runs(k):
-    """
-    Resets random number seed before running something ,Cache the detaults settings and restore them after the test
-    Print error messages or stack dumps as required or Return true if this all went well. 
+# def runs(k):
+#     """
+#     Resets random number seed before running something ,Cache the detaults settings and restore them after the test
+#     Print error messages or stack dumps as required or Return true if this all went well. 
 
-    Parameters
-    ----------
-    k : dict
-        the['eg']
-    p   : int
-        position from which to get the number in the list    
+#     Parameters
+#     ----------
+#     k : dict
+#         the['eg']
+#     p   : int
+#         position from which to get the number in the list    
     
-    Returns
-    -------
-    Bool
-    """
-    if k not in eg:
-        return
-    old = {}
-    for t in the:
-        old[t]=the[t]
-    try:
-        status = eg[k]()
-        if status == True:
-            message = "PASS"
-        elif status == None:
-            message = "CRASH"
-        else:
-            status = True
-            message = "FAIL"
-    except:
+#     Returns
+#     -------
+#     Bool
+#     """
+#     if k not in eg:
+#         return
+#     old = {}
+#     for t in the:
+#         old[t]=the[t]
+#     try:
+#         status = eg[k]()
+#         if status == True:
+#             message = "PASS"
+#         elif status == None:
+#             message = "CRASH"
+#         else:
+#             status = True
+#             message = "FAIL"
+#     except:
 
-        status = False
-        message = "CRASH"
-    for t in old:
-        the[t]=old[t]
-    if status==True:
-        print("✅ pass:",k)
-    else:
-        print("❌ fail:",k)
-    #print("\n!!!!!", message, k, status)
-    #print(("-"*50)+"\n")
-    return status
+#         status = False
+#         message = "CRASH"
+#     for t in old:
+#         the[t]=old[t]
+#     if status==True and message=="PASS":
+#         print("✅ pass:",k)
+#     else:
+#         print("❌ fail:",k)
+#     #print("\n!!!!!", message, k, status)
+#     #print(("-"*50)+"\n")
+#     return status
 
-def LIST():
-    """
-    Sort all test names
+# def LIST():
+#     """
+#     Sort all test names
         
-    Returns
-    -------
-    list
-    """
-    t=[] 
-    for k in eg:
-        t.append(k)
-    t.sort() 
-    return t
+#     Returns
+#     -------
+#     list
+#     """
+#     t=[] 
+#     for k in eg:
+#         t.append(k)
+#     t.sort() 
+#     return t
 
-def ALL():
-    """
-    Runs all the tests
+# def ALL():
+#     """
+#     Runs all the tests
         
-    Returns
-    -------
-    Bool
-    """
-    fails=0
-    l = LIST()
-    for task in l:
-        if task != "ALL":
-            if not runs(task):
-                fails = fails + 1
-    return True
+#     Returns
+#     -------
+#     Bool
+#     """
+#     fails=0
+#     l = LIST()
+#     for task in l:
+#         if task != "ALL":
+#             if not runs(task):
+#                 fails = fails + 1
+#     return True
 
-eg["ALL"]= ALL
-eg["sym"]= sym
-eg["num"]= num
-eg["the"]= the_func
+# eg["ALL"]= ALL
+# eg["sym"]= sym
+# eg["num"]= num
+# eg["the"]= the_func

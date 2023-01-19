@@ -4,6 +4,12 @@ Help
 It is a header string showing help, from which we build our 'the' settings object
 
 """
+the = {
+    'dump': False,
+    'go': None,
+    'seed': 937162211,
+}
+
 help=" \n\
 script.lua : an example script with help text and a test suite \n\
 (c)2022, Tim Menzies <timm@ieee.org>, BSD-2 \n\
@@ -15,3 +21,7 @@ OPTIONS:\n\
   -s  --seed  random number seed   = 937162211\n\
 ACTIONS:\n\
 "
+
+Seed = 937162211
+
+egs={}

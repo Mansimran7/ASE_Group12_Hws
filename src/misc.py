@@ -1,15 +1,12 @@
-from help import help
+from help import *
 import math
 import re
 import sys
 
-the = {
-    "seed": 937162211,
-    "dump": False,
-    "eg": None,
-}
+def settings(str):
+    return dict(re.findall("\n[\s]+[-][\S]+[\s]+[-][-]([\S]+)[^\n]+= ([\S]+)",str))
 
-def coerce(s):
+def coerce(s1):
     """
         Converts value to Boolean, if value is not a boolean string it converts it to integer.
         
@@ -23,78 +20,34 @@ def coerce(s):
         int
         Bool
         """
-    def fun(s1):
-        if s1=="true":
-            return True
-        elif s1=="false":
-            return False
-        return s1
-    if s.isnumeric():
-        return int(s)
+    if s1=="true":
+        return True
+    elif s1=="false":
+        return False
+    elif s1.isnumeric():
+        return int(s1)
+    elif '.' in s1 and s1.replace('.','').isnumeric():
+        return float(s1)
     else:
-        return fun(s)
+        return s1
 
-class CLI:
-    """
-   This class parses everything to the coerce() function.
 
-    ...
+def cli(t):
+    for slot,v in t.items():
+        v=str(v)
+        for n,x in enumerate(sys.argv):
+            if x=="-" + slot[0] or x=="--" + slot:
+                if v == "false":
+                    v = "true"
+                elif v == "true":
+                    v = "false"
+                else:
+                    v = sys.argv[n + 1]
+        t[slot] = coerce(v)
+    return t
 
-    """
-    def __init__(self):
-        def append_the(tuple):
-            k=tuple.group(2)
-            x=tuple.group(3)
-            the[k]=coerce(x)
-        pattern = r"-(\w+)[\s]*--[\s]*(\w+)[\s]*[^=]*[\s]*=[\s]*(.*)"
-        re.sub(pattern, append_the , help)
-        self.cli(the)
-
-    def cli(self, t):
-        """
-        This method calls the coerce() function on every value in t.
-
-        Parameters
-        ----------
-        t : list
-            t is a list containing strings.
-        
-        Returns
-        -------
-        list
-        """
-        for slot in t:
-            v = str(t[slot])
-            n = 0
-            for x in sys.argv:
-                if n > 0:
-                    if x == "-" + slot[0] or x == "--" + slot:
-                        if v == "False":
-                            v = "true"
-                            t[slot] = coerce(v)
-                            continue
-                        elif v == "True":
-                            v = "false"
-                            t[slot] = coerce(v)
-                            continue
-                        else:
-                            v = sys.argv[n + 1]
-                        t[slot] = coerce(v)
-                n+=1
-        if t["help"]:
-            exit(help)
-        return t
-
-    def push(self,t,x):
-         
-        # t[len(t)+1] = x if t is dictionary
-        """
-         Misc function to push something to the end of a list
-        
-        Returns
-        -------
-        pushed element
-        """
-        t.append(x) # if t is list
-        return x
+def eg(key, str, fun):
+    egs[key] = fun
+    global help
+    help = help + '  -g '+ key + '\t' + str + '\n'
    
