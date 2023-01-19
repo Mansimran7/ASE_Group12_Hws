@@ -127,7 +127,7 @@ def ALL():
                 fails = fails + 1
     return True
 
-#eg["ALL"]= ALL
+eg["ALL"]= ALL
 eg["sym"]= sym
 eg["num"]= num
 eg["the"]= the_func
