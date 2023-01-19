@@ -24,7 +24,7 @@ def sym():
     entropy = sym.div()
     entropy = 1000*entropy//1/1000
     #oo({"mid":mode,"div":entropy})
-    return (mode =="a" and 1.37 <= entropy and entropy <= 1.38) 
+    return (mode =="a" and 1.379 == entropy and rnd(entropy,3))
 
 def num():
     """
