@@ -39,8 +39,7 @@ def num():
         num.add(i)
     mid = num.mid()
     div = num.div()
-    #print(mid,div)
-    return (50<=mid and mid<=52 and 30.5<div and div<32)
+    return (1.571 == mid and 0.787 == rnd(div,3))
 
 def the_func():
     """

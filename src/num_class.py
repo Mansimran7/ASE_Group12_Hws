@@ -1,7 +1,7 @@
 import math
 import random
 from maths import per
-from misc import *
+
 class Num:
     """
     A class to represent a Number to summarize a stream of symbols.
@@ -38,32 +38,16 @@ class Num:
         Calculates the median for Nums.
     """
 
-    def __init__(self, c = 0 , s = ""):
+    def __init__(self):
         self.n = 0
-        self.at = c
-        self.name = s
-        self._has = []
+        self.mu = 0
+        self.m2 = 0
         self.lo = math.inf
         self.hi = -math.inf
-        self.isSorted = True
-    
-    def nums(self):
-        """
-        identifies if numbers are sorted or not and if not sorts them in ascending order and returns the sorted Numbers.
+        # self.isSorted = True
 
-        Parameters
-        ----------
-        
-        Returns
-        -------
-        dict
-        """
-        if not self.isSorted:
-            self._has.sort()
-            self.isSorted=True
-        return self._has
 
-    def add(self, v):
+    def add(self, n):
         """
         Increments the total no. of numbers seen so far and total no. of a particular number seen so far by
         maintaining a Reservoir sampler that keeps at most the.nums numbers which are uniformally spaced. 
@@ -78,16 +62,13 @@ class Num:
         -------
         None
         """
-        if v!="?":
+        if n!="?":
             self.n = self.n+1
-            self.lo = min(v, self.lo)
-            self.hi = max(v, self.hi)
-            if len(self._has) < the["nums"]:
-                self._has.append(v)
-            else:
-                pos = random.randint(0,len(self._has)-1)
-                self.isSorted = False
-                self._has[pos] = v
+            d = self.n - self.mu
+            self.mu = self.mu + d/self.n
+            self.m2 = self.m2 + d*(n - self.mu)
+            self.lo = min(n, self.lo)
+            self.hi = max(n, self.hi)
 
     def div(self):
         """
@@ -99,11 +80,11 @@ class Num:
         -------
         int
         """
-        return (per (self.nums(),0.9)-per(self.nums(),0.1))/2.58
+        return (self.m2 < 0 or self.n < 2) and 0 or math.pow((self.m2/(self.n-1)), 0.5)
 
     def mid(self):
         """
-        Calculates the median for Nums.
+        Calculates the mean for Nums.
 
         Parameters
         ----------
@@ -111,4 +92,4 @@ class Num:
         -------
         int
         """
-        return per(self.nums(), 0.5)
+        return self.mu

@@ -4,7 +4,6 @@ import re
 import sys
 
 the = {
-    "nums": 512,
     "seed": 10019,
     "dump": False,
     "file": "../data/auto93.csv",
