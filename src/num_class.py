@@ -1,7 +1,7 @@
 import math
 import random
 from maths import per
-
+from misc import *
 class Num:
     """
     A class to represent a Number to summarize a stream of symbols.
