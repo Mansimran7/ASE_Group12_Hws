@@ -69,6 +69,7 @@ class Num:
             self.m2 = self.m2 + d*(v - self.mu)
             self.lo = min(v, self.lo)
             self.hi = max(v, self.hi)
+        return self
 
     def div(self):
         """
@@ -80,7 +81,7 @@ class Num:
         -------
         int
         """
-        return (self.m2 < 0 or self.n < 2) and (self.m2/(self.n-1))**(0.5)
+        return 0 if (self.m2 <0 or self.n < 2) else (self.m2/(self.n-1))**0.5
 
     def mid(self):
         """
