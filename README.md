@@ -53,32 +53,38 @@ This project is licensed under [MIT](https://mit-license.org/).
 Further details regarding the license can be found [here](https://github.com/Mansimran7/ASE_Group12_Hws/blob/main/LICENSE.md).
 
 ## Directory Structure
-    C:.
-    │   .gitignore
-    │   CITATION.cff
-    │   CODE_OF_CONDUCT.md
-    │   CONTRIBUTING.md
-    │   LICENSE.md
-    │   README.md
-    │
-    ├───etc
-    │   └───img
-    │           Discord_server_proof.png
-    │           luatopython_group12.gif
-    │
-    ├───src
-    │   │   help.py
-    │   │   main.py
-    │   │   maths.py
-    │   │   misc.py
-    │   │   num_class.py
-    │   │   sym_class.py
-    │   │   utils.py
-    │   │   __init__.py
-    │
-    └───tests
-        │   testEngine.py
-        │   __init__.py
+        C:.
+        │   .gitignore
+        │   CITATION.cff
+        │   CODE_OF_CONDUCT.md
+        │   CONTRIBUTING.md
+        │   LICENSE.md
+        │   README.md
+        │
+        ├───docs
+        │       docs.md
+        │
+        ├───etc
+        │   ├───img
+        │   │       Discord_server_proof.png
+        │   │       luatopython_group12.gif
+        │   │
+        │   └───out
+        │           script.out
+        │
+        ├───src
+        │   │   help.py
+        │   │   main.py
+        │   │   maths.py
+        │   │   misc.py
+        │   │   num_class.py
+        │   │   sym_class.py
+        │   │   utils.py
+        │   │   __init__.py
+        │
+        └───tests
+            │   testEngine.py
+            │   __init__.py
  
 ## Contributors
 1. [Devanshi Savla](https://github.com/devanshi39)
