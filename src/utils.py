@@ -77,8 +77,9 @@ def rand(low, high):
     
     low = low or 0
     high = high or 1
-    seed = (16807 * the["seed"]) % 2147483647
-    result = low + (high-low) * seed / 2147483647
+    global Seed
+    Seed = (16807 * Seed) % 2147483647
+    result = low + (high-low) * Seed / 2147483647
     return result
 
 def rnd(x, places):

@@ -7,8 +7,6 @@ from utils import *
 from misc import *
 import math
 
-eg={}
-
 def sym():
     """
     Test for symbols
@@ -64,17 +62,13 @@ def the_rand():
 
     num1 = Num()
     num2 = Num()
+    global Seed
+    Seed=the['seed']
     for i in range(1, 1001):    
         num1.add(rand(0,1))
-    
+    Seed=the['seed']
     for i in range(1, 1001):
         num2.add(rand(0,1))
-    
-    m1 = rnd(num1.mid(), 10)
-    m2 = rnd(num2.mid(), 10)
+    m1 = rnd(num1.mid(), 1)
+    m2 = rnd(num2.mid(), 1)
     return m1==m2 and 0.5==rnd(m1, 1)
-
-# eg["sym"]= sym
-# eg["num"]= num
-# eg["the"]= the_func
-# eg["rnd"]= rand
