@@ -29,7 +29,7 @@ def main():
 
 if __name__ == "__main__":
     misc.eg('the', 'show settings', the_func)
-    #eg('rand', 'generate, reset, regenerate same', rand)
+    misc.eg('rand', 'generate, reset, regenerate same', the_rand)
     misc.eg('sym', 'check syms', sym)
     misc.eg('num', 'check nums', num)
     main()
