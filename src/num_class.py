@@ -85,7 +85,7 @@ class Num:
 
     def mid(self):
         """
-        Calculates the mean for Nums.
+        Calculates the mode for Nums.
 
         Parameters
         ----------
