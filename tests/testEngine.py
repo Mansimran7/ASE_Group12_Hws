@@ -74,7 +74,7 @@ def the_rand():
     m2 = rnd(num2.mid(), 10)
     return m1==m2 and 0.5==rnd(m1, 1)
 
-eg["sym"]= sym
-eg["num"]= num
-eg["the"]= the_func
-eg["rnd"]= rand
+#eg["sym"]= sym
+#eg["num"]= num
+#eg["the"]= the_func
+#eg["rnd"]= rand
