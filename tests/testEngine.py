@@ -5,6 +5,9 @@ from num_class import Num
 from sym_class import Sym
 from utils import *
 from misc import *
+import math
+
+eg={}
 
 def sym():
     """
@@ -49,81 +52,29 @@ def the_func():
     oo(the)
     return True
 
-# def runs(k):
-#     """
-#     Resets random number seed before running something ,Cache the detaults settings and restore them after the test
-#     Print error messages or stack dumps as required or Return true if this all went well. 
+def the_rand():
 
-#     Parameters
-#     ----------
-#     k : dict
-#         the['eg']
-#     p   : int
-#         position from which to get the number in the list    
+    """
+    Runs all rand function
+        
+    Returns
+    -------
+    Bool
+    """
+
+    num1 = Num()
+    num2 = Num()
+    for i in range(1, 1001):    
+        num1.add(rand(0,1))
     
-#     Returns
-#     -------
-#     Bool
-#     """
-#     if k not in eg:
-#         return
-#     old = {}
-#     for t in the:
-#         old[t]=the[t]
-#     try:
-#         status = eg[k]()
-#         if status == True:
-#             message = "PASS"
-#         elif status == None:
-#             message = "CRASH"
-#         else:
-#             status = True
-#             message = "FAIL"
-#     except:
+    for i in range(1, 1001):
+        num2.add(rand(0,1))
+    
+    m1 = rnd(num1.mid(), 10)
+    m2 = rnd(num2.mid(), 10)
+    return m1==m2 and 0.5==rnd(m1, 1)
 
-#         status = False
-#         message = "CRASH"
-#     for t in old:
-#         the[t]=old[t]
-#     if status==True and message=="PASS":
-#         print("✅ pass:",k)
-#     else:
-#         print("❌ fail:",k)
-#     #print("\n!!!!!", message, k, status)
-#     #print(("-"*50)+"\n")
-#     return status
-
-# def LIST():
-#     """
-#     Sort all test names
-        
-#     Returns
-#     -------
-#     list
-#     """
-#     t=[] 
-#     for k in eg:
-#         t.append(k)
-#     t.sort() 
-#     return t
-
-# def ALL():
-#     """
-#     Runs all the tests
-        
-#     Returns
-#     -------
-#     Bool
-#     """
-#     fails=0
-#     l = LIST()
-#     for task in l:
-#         if task != "ALL":
-#             if not runs(task):
-#                 fails = fails + 1
-#     return True
-
-# eg["ALL"]= ALL
-# eg["sym"]= sym
-# eg["num"]= num
-# eg["the"]= the_func
+eg["sym"]= sym
+eg["num"]= num
+eg["the"]= the_func
+eg["rnd"]= rand

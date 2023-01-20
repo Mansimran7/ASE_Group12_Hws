@@ -1,6 +1,6 @@
 import math
 from help import *
-# from misc import the,coerce
+from misc import *
 
 def o(t):
     """
@@ -77,7 +77,7 @@ def rand(low, high):
     
     low = low or 0
     high = high or 1
-    seed = (16807 * seed) % 2147483647
+    seed = (16807 * the["seed"]) % 2147483647
     result = low + (high-low) * seed / 2147483647
     return result
 
