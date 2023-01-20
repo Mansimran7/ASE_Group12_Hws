@@ -10,6 +10,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Mansimran7/ASE_Group12_Hws)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Mansimran7/ASE_Group12_Hws)
 ![GitHub contributors](https://img.shields.io/github/contributors/Mansimran7/ASE_Group12_Hws)
+![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/Mansimran7/ASE_Group12_Hws/LUA2Python.yml?branch=main)
 
 <img src="https://github.com/Mansimran7/ASE_Group12_Hws/blob/main/etc/img/luatopython_group12.gif" width="400" height="320"/>
 
