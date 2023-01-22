@@ -1,7 +1,6 @@
 import math
 import random
 from maths import per
-from utils import rnd
 
 class Num:
     """
@@ -39,15 +38,13 @@ class Num:
         Calculates the median for Nums.
     """
 
-    def __init__(self, at=None, txt=None):
-        self.at = at if at else 0
-        self.txt = txt if txt else ""
+    def __init__(self):
         self.n = 0
         self.mu = 0
         self.m2 = 0
         self.lo = math.inf
         self.hi = -math.inf
-        self.w = -1 if "-" in self.txt else 1
+        # self.isSorted = True
 
 
     def add(self, v):
@@ -88,7 +85,7 @@ class Num:
 
     def mid(self):
         """
-        Calculates the mean for Nums.
+        Calculates the mode for Nums.
 
         Parameters
         ----------
@@ -97,9 +94,3 @@ class Num:
         int
         """
         return self.mu
-
-    def rnd(self,a,n):
-        """
-        returns rounded number
-        """
-        return a if a == "?" else rnd(a,n)
