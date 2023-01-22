@@ -38,7 +38,7 @@ class Num:
         Calculates the median for Nums.
     """
 
-    def __init__(self):
+    def __init__(self, at=None, txt=None):
         self.at = at if at else 0
         self.txt = txt if txt else ""
         self.n = 0
