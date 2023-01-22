@@ -2,7 +2,7 @@ from misc import *
 import misc
 from utils import *
 import sys
-sys.path.append(sys.path[0]+'\\..\\tests\\')
+sys.path.append(sys.path[0]+'\\..\\..\\tests\\')
 from testEngine import *
 
 def main():   
