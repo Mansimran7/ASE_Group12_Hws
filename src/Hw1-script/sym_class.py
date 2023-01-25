@@ -82,3 +82,6 @@ class Sym:
             n=self.has[k]
             e=e+fun(n/self.n)
         return -e
+    
+    def rnd(self, v, n):
+        return self.v
