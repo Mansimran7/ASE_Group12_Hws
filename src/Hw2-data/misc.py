@@ -50,4 +50,16 @@ def eg(key, str, fun):
     egs[key] = fun
     global help
     help = help + '  -g '+ key + '\t' + str + '\n'
-   
+  
+def push(self,t,x):
+         
+        # t[len(t)+1] = x if t is dictionary
+        """
+         Misc function to push something to the end of a list
+        
+        Returns
+        -------
+        pushed element
+        """
+        t.append(x) # if t is list
+        return x
