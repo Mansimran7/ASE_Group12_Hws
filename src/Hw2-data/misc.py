@@ -53,7 +53,6 @@ def eg(key, str, fun):
   
 def push(self,t,x):
          
-        # t[len(t)+1] = x if t is dictionary
         """
          Misc function to push something to the end of a list
         
@@ -63,3 +62,15 @@ def push(self,t,x):
         """
         t.append(x) # if t is list
         return x
+
+def sort(self,t,x):
+         
+        """
+         Misc function to sort something to the end of a list
+        
+        Returns
+        -------
+        pushed element
+        """
+        t.sort() # if t is list
+        return t
