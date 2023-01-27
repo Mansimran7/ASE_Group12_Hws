@@ -29,7 +29,9 @@ def main():
 
 if __name__ == "__main__":
     misc.eg('the', 'show settings', the_func)
-    misc.eg('rand', 'generate, reset, regenerate same', the_rand)
     misc.eg('sym', 'check syms', sym)
     misc.eg('num', 'check nums', num)
+    misc.eg('csv', 'read from csv', csv)
+    misc.eg('data', 'read DATA csv', data)
+    misc.eg('stats', 'stats from DATA', stats)
     main()
