@@ -2,6 +2,8 @@ import math
 from cols_class import Cols
 from row_class import Row
 from utils import *
+from misc import *
+
 class DATA:
     
     """
@@ -11,12 +13,8 @@ class DATA:
 
     def __init__(self, src):
 
-        self.rows = {}
+        self.rows = []
         self.cols = None
-
-        def fun(x):
-            self.add(x)
-        
         
         if type(src) == str:
             csv(src, self.add)
@@ -27,7 +25,7 @@ class DATA:
 
     def add(self, t):
         if self.cols:
-            t = t.cells and t or Row(t)
+            t = Row(t) if type(t) == list else t
             self.rows.append(t)
             self.cols.add(t)
         else:
@@ -44,7 +42,7 @@ class DATA:
 
     def stats(self, what, cols, nPlaces):
 
-        def fun(k, col):
+        def fun(_, col):
             if what == 'div':
                 value = col.div()
             else:
