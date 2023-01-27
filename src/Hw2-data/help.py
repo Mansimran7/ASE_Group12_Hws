@@ -16,7 +16,7 @@ data.lua : an example csv reader script\n\
 USAGE:   data.lua  [OPTIONS] [-g ACTION]\n\
 OPTIONS:\n\
   -d  --dump  on crash, dump stack = false\n\
-  -f  --file  name of file         = ../etc/data/auto93.csv\n\
+  -f  --file  name of file         = ../../etc/data/auto93.csv\n\
   -g  --go    start-up action      = data\n\
   -h  --help  show help            = false\n\
   -s  --seed  random number seed   = 937162211\n\
@@ -26,3 +26,5 @@ ACTIONS:\n\
 Seed = 937162211
 
 egs={}
+
+n = 0

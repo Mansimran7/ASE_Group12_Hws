@@ -27,7 +27,7 @@ class Sym:
         Calculates the diversity of a symbol.
     """
 
-    def __init__(self, at, txt):
+    def __init__(self, at = 0, txt = ""):
         self.at = at or 0
         self.txt = txt or ""
         self.n = 0

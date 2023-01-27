@@ -1,6 +1,10 @@
 import math
 from help import *
-#from misc import *
+from misc import coerce
+from misc import *
+import io
+import os
+import sys
 
 def o(t):
     """
@@ -99,3 +103,17 @@ def rnd(x, places):
         """
     mult = pow(10, places or 3)
     return math.floor(x * mult + 0.5) / mult
+
+def csv(sFilename, fun):
+    if sFilename:
+        src = io.open(sFilename)
+        t = []
+        for _,l in enumerate(src):
+            s = l.strip().split(',')
+            r = list(map(coerce, s))
+            t.append(r)
+            fun(r)
+    else:
+        print("File not opening")
+        
+        

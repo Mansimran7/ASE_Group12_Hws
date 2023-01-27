@@ -3,9 +3,11 @@ import sys
 sys.path.append(sys.path[0]+'\\..\\src\\')
 from num_class import Num
 from sym_class import Sym
+from DATA_class import DATA
 from utils import *
 from misc import *
 import math
+
 
 def sym():
     """
@@ -72,3 +74,24 @@ def the_rand():
     m1 = rnd(num1.mid(), 1)
     m2 = rnd(num2.mid(), 1)
     return m1==m2 and 0.5==rnd(m1, 1)
+
+def num_chars(t):
+    global n
+    n = n + len(t)
+
+def csv_test():
+    csv(the['file'],num_chars)
+    return n == 8*399
+
+def data():
+    data = DATA(the['file'])
+    len_of_rows = len(data.rows)
+    return len_of_rows == 398 and data.cols.y[0].w == -1 and data.cols.x[1].at == 1 and len(data.cols.x) == 4
+
+def stats():
+    data = DATA(the['file'])
+    for k, cols in {'y': data.cols.y, 'x':data.cols.x}.items():
+        print(k, 'mid',data.stats('mid',cols,2))
+        print(' ','div', data.stats('div',cols,2))
+    return True
+

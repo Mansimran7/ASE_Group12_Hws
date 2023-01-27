@@ -30,9 +30,9 @@ def main():
 
 if __name__ == "__main__":
     misc.eg('the', 'show settings', the_func)
-    #misc.eg('csv', 'read from csv', csv)
     misc.eg('sym', 'check syms', sym)
     misc.eg('num', 'check nums', num)
-    misc.eg('data', 'read DATA csv', DATA)
-    misc.eg('stats', 'stats from DATA', DATA.stats)
+    misc.eg('csv', 'read from csv', csv_test)
+    misc.eg('data', 'read DATA csv', data)
+    misc.eg('stats', 'stats from DATA', stats)
     main()

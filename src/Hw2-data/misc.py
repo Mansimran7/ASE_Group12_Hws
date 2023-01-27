@@ -74,3 +74,11 @@ def sort(self,t,x):
         """
         t.sort() # if t is list
         return t
+
+def kap(t, fun):
+    x = {}
+    for i in t:
+        k = t.index(i)
+        i, k =fun(k,i)
+        x[k or len(x)] = i
+    return u
