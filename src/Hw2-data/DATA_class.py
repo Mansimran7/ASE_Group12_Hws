@@ -2,6 +2,7 @@ import math
 from cols_class import Cols
 from row_class import Row
 from utils import *
+from utils import rnd
 from misc import *
 
 class DATA:
@@ -47,7 +48,8 @@ class DATA:
                 value = col.div()
             else:
                 value = col.mid()
-            return col.rnd(value, nPlaces), col.txt
+            rounded_value = col.rnd(value, nPlaces)
+            return rounded_value, col.txt
 
         return kap(cols or self.cols.y, fun)
     

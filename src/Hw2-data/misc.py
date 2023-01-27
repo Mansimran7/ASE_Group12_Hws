@@ -81,4 +81,4 @@ def kap(t, fun):
         k = t.index(i)
         i, k =fun(k,i)
         x[k or len(x)] = i
-    return u
+    return x
