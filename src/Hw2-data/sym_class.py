@@ -67,6 +67,9 @@ class Sym:
         """
         return self.mode
 
+    def rnd(self, x, nPlaces):
+        return x
+
     def div(self):
         """
         Calculates the diversity of symbol by calculating its entropy.

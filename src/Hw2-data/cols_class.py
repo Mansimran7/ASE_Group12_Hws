@@ -12,19 +12,19 @@ class Cols:
         self.klass = None
         for n,s in enumerate(t):
             pattern = "^[A-Z]+"
-            col = re.search(pattern, s)
-            if col:
-                Num(n,s)
+            col_cond = re.search(pattern, s)
+            if col_cond:
+                col = Num(n,s)
             else:
-                Sym(n,s)
+                col = Sym(n,s)
             self.all.append(col)
             if not re.search("X$", s):
+                if re.search("[!+-]$", s):
+                    self.y.append(col)
+                else:
+                    self.x.append(col)
                 if re.search("!$", s):
                     self.klass = col
-                if re.search("[!+-]$", s):
-                    self.y = col
-                else:
-                    self.x = col
     
     def add(self,r):
         for t in [self.x, self.y]:
