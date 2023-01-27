@@ -2,6 +2,7 @@ from misc import *
 import misc
 from utils import *
 import sys
+from DATA_class import *
 sys.path.append(sys.path[0]+'\\..\\..\\tests\\')
 from testEngine import *
 
@@ -29,7 +30,9 @@ def main():
 
 if __name__ == "__main__":
     misc.eg('the', 'show settings', the_func)
-    misc.eg('rand', 'generate, reset, regenerate same', the_rand)
+    #misc.eg('csv', 'read from csv', csv)
     misc.eg('sym', 'check syms', sym)
     misc.eg('num', 'check nums', num)
+    misc.eg('data', 'read DATA csv', DATA)
+    misc.eg('stats', 'stats from DATA', DATA.stats)
     main()
