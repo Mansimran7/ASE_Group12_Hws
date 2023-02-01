@@ -82,3 +82,10 @@ def kap(t, fun):
         i, k =fun(k,i)
         x[k or len(x)] = i
     return x
+
+def show(node, what, cols, nPlaces, lvl):
+    if node:
+        lvl = lvl or 0
+        print()
+        show(node.left, what, cols, nPlaces, lvl+1)
+        show(node.right, what, cols, nPlaces, lvl+1)
