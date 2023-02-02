@@ -53,3 +53,24 @@ class DATA:
 
         return kap(cols or self.cols.y, fun)
     
+    def better(self, row1, row2, s1, s2, ys, x, y):
+        
+        s1,s2,ys = 0,0,self.cols.y
+        for key, col in ys:
+            x = col.norm(row1.cells[col.at])
+            y = col.norm(row2.cells[col.at])
+
+            s1 = s1 - math.exp(col.w * (x-y) / len(ys))
+            s2 = s2 - math.exp(col.w * (y-x) / len(ys))
+        
+        return s1/len(ys) < s2/len(ys)
+
+    def dist(self, row1, row2, cols, n,d):
+
+        n,d = 0,0
+        for key, col in cols or self.cols.x:
+            n = n + 1
+            d = d + math.pow(col.dist(row1.cells[col.at], row2.cells[col.at]), the.p) 
+
+        return math.pow((d/n), 1/the.p)
+
