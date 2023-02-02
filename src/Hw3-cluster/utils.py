@@ -1,7 +1,7 @@
 # importing all the required libraries
 import math
 from help import *
-from misc import coerce
+import misc
 from misc import *
 import io
 import os
@@ -111,7 +111,7 @@ def csv(sFilename, fun):
         t = []
         for _,l in enumerate(src):
             s = l.strip().split(',')
-            r = list(map(coerce, s))
+            r = list(map(misc.coerce, s))
             t.append(r)
             fun(r)
     else:

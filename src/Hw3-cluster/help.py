@@ -16,7 +16,7 @@ cluster.lua : an example csv reader script \n\
 USAGE: cluster.lua  [OPTIONS] [-g ACTION] \n\
 OPTIONS: \n\
   -d  --dump    on crash, dump stack   = false \n\
-  -f  --file    name of file           = ../etc/data/auto93.csv \n\
+  -f  --file    name of file           = ../../etc/data/auto93.csv \n\
   -F  --Far     distance to 'faraway'  = .95 \n\
   -g  --go      start-up action        = data \n\
   -h  --help    show help              = false \n\
