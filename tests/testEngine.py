@@ -116,6 +116,10 @@ def half():
     print(o(mid.cells))
     print(o(B.cells))
 
+def cluster():
+    data = DATA(the['file'])
+    show(data.cluster(),"mid",data.cols.y,1)
+
 def optimize():
     data = DATA(the['file'])
     show(data.sway(),"mid",data.cols.y,1)

@@ -79,6 +79,7 @@ Further details regarding the license can be found [here](https://github.com/Man
     │   │       luatopython_group12.gif
     │   │
     │   └───out
+    │           cluster.out
     │           data.out
     │           script.out
     │
@@ -103,11 +104,23 @@ Further details regarding the license can be found [here](https://github.com/Man
     │   │   │   sym_class.py
     │   │   │   utils.py
     │   │   │   __init__.py
+    │ 
+    │   ├───Hw3-cluster
+    │   │   │   cols_class.py  
+    │   │   │   DATA_class.py
+    │   │   │   help.py
+    │   │   │   main.py
+    │   │   │   misc.py
+    │   │   │   num_class.py
+    │   │   │   row_class.py
+    │   │   │   sym_class.py
+    │   │   │   utils.py
+    │   │   │   __init__.py
     │
     └───tests
         │   testEngine.py
         │   test_add.py
-        │   __init__.py
+        │   __init__.py 
 
 ## Contributors
 1. [Devanshi Savla](https://github.com/devanshi39)
