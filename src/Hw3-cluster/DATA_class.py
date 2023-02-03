@@ -32,14 +32,12 @@ class DATA:
         else:
             self.cols = Cols(t)
     
-
-    def clone(self, init, data):
-        data = DATA({self.cols.name})
+    def clone(self, init = {}):
+        data = DATA([self.cols.names])
         def push(x):
             data.add(x)
-        map(init or {}, push)
+        list(map(push, init))
         return data
-
 
     def stats(self, what, cols, nPlaces):
 
@@ -65,17 +63,46 @@ class DATA:
         
         return s1/len(ys) < s2/len(ys)
 
-    def dist(self, row1, row2, cols, n,d):
-
+    def dist(self, row1, row2, cols = None):
         n,d = 0,0
-        for key, col in cols or self.cols.x:
+        for col in cols or self.cols.x:
             n = n + 1
             d = d + math.pow(col.dist(row1.cells[col.at], row2.cells[col.at]), the['p']) 
-
         return math.pow((d/n), 1/the['p'])
 
-    def sway(self, rows, min, cols, above):
+    def around(self, row1, rows = None, cols = None):
+        def temp(row2):
+            return {'row' : row2, 'dist' : self.dist(row1,row2,cols)} 
+        return sorted(list(map(temp, rows or self.rows)), key = lambda k : k["dist"])
 
+    
+    def half(self, rows = None, cols = None, above = None):
+        def project(row):
+            return {'row' : row, 'dist' : cosine(dist(row,A), dist(row,B), c)}
+        
+        def dist(row1,row2): 
+            return self.dist(row1,row2,cols)
+        
+        rows = rows or self.rows
+        some = many(rows,the['Sample'])
+        A = above or any(some)
+        B = self.around(A,some)[int(the['Far'] * len(rows))//1]['row']
+        c = dist(A,B)
+        left, right = [], []
+        
+        pairs_of_prows = sorted(list(map(project, rows)), key=lambda k: k["dist"])
+        
+        for n, temp in enumerate(pairs_of_prows):
+            if   n <= len(rows) // 2:
+                left.append(temp["row"])
+                mid = temp["row"]
+            else:
+                right.append(temp["row"])
+        
+        return left, right, A, B, mid, c
+        
+
+    def sway(self, rows, min, cols, above):
         rows = rows or self.rows
         min = min or math.pow(len(rows), the['min'])
         cols = cols or self.cols.x
