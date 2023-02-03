@@ -51,10 +51,10 @@ class DATA:
 
         return kap(cols or self.cols.y, fun)
     
-    def better(self, row1, row2, s1, s2, ys, x, y):
+    def better(self, row1, row2):
         
         s1,s2,ys = 0,0,self.cols.y
-        for key, col in ys:
+        for col in ys:
             x = col.norm(row1.cells[col.at])
             y = col.norm(row2.cells[col.at])
 
@@ -102,17 +102,15 @@ class DATA:
         return left, right, A, B, mid, c
         
 
-    def sway(self, rows, min, cols, above):
+    def sway(self, rows = None, min = None, cols = None, above = None):
         rows = rows or self.rows
         min = min or math.pow(len(rows), the['min'])
         cols = cols or self.cols.x
         node = {'data' : self.clone(rows)}
-
         if len(rows) > 2*min:
-            left, right, node['A'], node['B'], node['mid'] = self.half(rows,cols,above)
+            left, right, node['A'], node['B'], node['mid'], _ = self.half(rows,cols,above)
             if self.better(node['B'],node['A']):
                 left,right,node['A'],node['B'] = right,left,node['B'],node['A']
             node['left']  = self.sway(left,  min, cols, node['A'])
-        
         return node
 
