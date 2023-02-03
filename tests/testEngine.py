@@ -116,4 +116,6 @@ def half():
     print(o(mid.cells))
     print(o(B.cells))
 
-
+def optimize():
+    data = DATA(the['file'])
+    show(data.sway(),"mid",data.cols.y,1)

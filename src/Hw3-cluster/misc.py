@@ -87,7 +87,7 @@ def kap(t, fun):
         x[k or len(x)] = i
     return x
 
-def show(node, what, cols, nPlaces, lvl):
+def show(node, what, cols, nPlaces, lvl = 0):
     if node:
         lvl = lvl or 0
         # iowrite command
