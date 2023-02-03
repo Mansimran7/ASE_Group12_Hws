@@ -1,0 +1,17 @@
+dump : False go : all seed : 937162211 file : ../../etc/data/auto93.csv Far : 0.95 help : False min : 0.5 p : 2 Sample : 512
+✅ pass:         the
+✅ pass:         sym
+✅ pass:         num
+✅ pass:         csv
+✅ pass:         data
+y mid {'Lbs-': 2970.42, 'Acc+': 15.57, 'Mpg+': 23.84}
+  div {'Lbs-': 846.84, 'Acc+': 2.76, 'Mpg+': 8.34}
+x mid {'Clndrs': 5.45, 'Volume': 193.43, 'Model': 76.01, 'origin': 1}
+  div {'Clndrs': 1.7, 'Volume': 104.27, 'Model': 3.7, 'origin': 1.3273558482394003}
+✅ pass:         stats
+✅ pass:         clone
+200 198 398
+[4, 90, 71, 2223, 16.5, 75, 2, 30] 0.6820450147798408
+[6, 225, 95, 3264, 16, 75, 1, 20]
+[8, 260, 110, 4060, 19, 77, 1, 20]
+✅ pass:         half
