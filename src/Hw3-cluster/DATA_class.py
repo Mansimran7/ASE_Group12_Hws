@@ -70,7 +70,22 @@ class DATA:
         n,d = 0,0
         for key, col in cols or self.cols.x:
             n = n + 1
-            d = d + math.pow(col.dist(row1.cells[col.at], row2.cells[col.at]), the.p) 
+            d = d + math.pow(col.dist(row1.cells[col.at], row2.cells[col.at]), the['p']) 
 
-        return math.pow((d/n), 1/the.p)
+        return math.pow((d/n), 1/the['p'])
+
+    def sway(self, rows, min, cols, above):
+
+        rows = rows or self.rows
+        min = min or math.pow(len(rows), the['min'])
+        cols = cols or self.cols.x
+        node = {'data' : self.clone(rows)}
+
+        if len(rows) > 2*min:
+            left, right, node['A'], node['B'], node['mid'] = self.half(rows,cols,above)
+            if self.better(node['B'],node['A']):
+                left,right,node['A'],node['B'] = right,left,node['B'],node['A']
+            node['left']  = self.sway(left,  min, cols, node['A'])
+        
+        return node
 
