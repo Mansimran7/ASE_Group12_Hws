@@ -3,6 +3,7 @@ from help import *
 import math
 import re
 import sys
+from utils import *
 
 # import utils
 
@@ -94,17 +95,18 @@ def show(node, what, cols, nPlaces, lvl):
         show(node.left, what, cols, nPlaces, lvl+1)
         show(node.right, what, cols, nPlaces, lvl+1)
 
-def cosine(a, b, c, x1, x2, y):
-    x1 = (a**2 + c**2 - b**2) // (2*c)
+def cosine(a, b, c):
+    temp = 1 if c == 0 else 2*c
+    x1 = (a**2 + c**2 - b**2) // temp
     x2 = max(0, min(1, x1))
-    y = (a**2 - x2**2)**0.5
+    y = abs((a**2 - x2**2))**0.5
     return x2, y
 
 def any(t):
-    return t[rint(len(t))]
+    return t[rint(0, len(t) - 1)]
 
-def many(t, n, u):
-    u = {}
-    for i in range(n):
-        u[1+len(u)] = any(t)
+def many(t, n):
+    u = []
+    for i in range(1, n+1):
+        u.append(any(t))
     return u
