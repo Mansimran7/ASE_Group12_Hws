@@ -89,11 +89,13 @@ def kap(t, fun):
 
 def show(node, what, cols, nPlaces, lvl = 0):
     if node:
-        lvl = lvl or 0
-        # iowrite command
-        print((not node.left) or (lvl==0)) and o(node.data.stats("mid", node.data.cols.y, nPlaces) or "")
-        show(node.left, what, cols, nPlaces, lvl+1)
-        show(node.right, what, cols, nPlaces, lvl+1)
+        print('| '*lvl + str(len(node['data'].rows)) + " ", end = '')
+        if ((not node.get('left')) or (lvl==0)):
+            print(node['data'].stats("mid", node['data'].cols.y, nPlaces))
+        else:
+            print("")
+        show(node.get('left'), what, cols, nPlaces, lvl+1)
+        show(node.get('right'), what, cols, nPlaces, lvl+1)
 
 def cosine(a, b, c):
     temp = 1 if c == 0 else 2*c
