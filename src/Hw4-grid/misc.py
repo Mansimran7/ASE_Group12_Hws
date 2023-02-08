@@ -115,7 +115,7 @@ def many(t, n):
 
 def transpose(t, u):
     u = {}
-    for in range(1, len(t[1])):
+    for i in range(1, len(t[1])):
         u[i] = {}
         for j in range(1, len(t)):
             u[i][j] = t[j][i]
