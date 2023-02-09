@@ -126,3 +126,14 @@ def optimize():
 
 def every():
     repgrid(the['file'])
+
+def position():
+    t = dofile(the['file'])
+    rows = repRows(t, trasnpose(t.cols))
+    rows.cluster()
+    repPlace(rows)
+
+def prototypes():
+    t = dofile(the['file'])
+    rows = repRows(t, transpose(t.cols))
+    show(rows.cluster())
