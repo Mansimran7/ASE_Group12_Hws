@@ -137,3 +137,14 @@ def prototypes():
     t = dofile(the['file'])
     rows = repRows(t, transpose(t.cols))
     show(rows.cluster())
+
+def reprows():
+    t = dofile(the['file'])
+    rows = reRows(t, transpose(t.cols))
+    mapp(rows.cols.all, oo)
+    mapp(rows.rows, oo)
+
+def repcols():
+    t = repCols(dofile(the['file']))
+    mapp(t.cols.all, oo)
+    mapp(t.rows, oo)
