@@ -88,33 +88,33 @@ def data():
     len_of_rows = len(data.rows)
     return len_of_rows == 398 and data.cols.y[0].w == -1 and data.cols.x[1].at == 1 and len(data.cols.x) == 4
 
-def stats():
-    data = DATA(the['file'])
-    for k, cols in {'y': data.cols.y, 'x':data.cols.x}.items():
-        print(k, 'mid',data.stats('mid',cols,2))
-        print(' ','div', data.stats('div',cols,2))
-    return True
+# def stats():
+#     data = DATA(the['file'])
+#     for k, cols in {'y': data.cols.y, 'x':data.cols.x}.items():
+#         print(k, 'mid',data.stats('mid',cols,2))
+#         print(' ','div', data.stats('div',cols,2))
+#     return True
 
-def clone_func():
-    data1 = DATA(the['file'])
-    data2 = data1.clone(data1.rows)
-    return len(data1.rows) == len(data2.rows) and data1.cols.y[1].w == data2.cols.y[1].w and data1.cols.x[1].at == data2.cols.x[1].at and len(data1.cols.x) == len(data2.cols.x)
+# def clone_func():
+#     data1 = DATA(the['file'])
+#     data2 = data1.clone(data1.rows)
+#     return len(data1.rows) == len(data2.rows) and data1.cols.y[1].w == data2.cols.y[1].w and data1.cols.x[1].at == data2.cols.x[1].at and len(data1.cols.x) == len(data2.cols.x)
 
-def around():
-    data = DATA(the['file'])
-    print(0,0,o(data.rows[1].cells))
-    # print(0,0,data.rows[1].cells)
-    for n,t in enumerate(data.around(data.rows[1])):
-        if (n % 50) == 0:
-            print(n, rnd(t['dist'],2) ,t['row'].cells)
+# def around():
+#     data = DATA(the['file'])
+#     print(0,0,o(data.rows[1].cells))
+#     # print(0,0,data.rows[1].cells)
+#     for n,t in enumerate(data.around(data.rows[1])):
+#         if (n % 50) == 0:
+#             print(n, rnd(t['dist'],2) ,t['row'].cells)
 
-def half():
-    data = DATA(the['file'])
-    left, right, A, B, mid, c = data.half()
-    print(len(left),len(right),len(data.rows))
-    print(o(A.cells),c)
-    print(o(mid.cells))
-    print(o(B.cells))
+# def half():
+#     data = DATA(the['file'])
+#     left, right, A, B, mid, c = data.half()
+#     print(len(left),len(right),len(data.rows))
+#     print(o(A.cells),c)
+#     print(o(mid.cells))
+#     print(o(B.cells))
 
 def cluster():
     data = DATA(the['file'])
