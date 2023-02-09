@@ -126,8 +126,11 @@ def last(t):
     return t[len(t)-1]
 
 def dofile(fname):
-    with open(fname) as f:
-        return json.load(f)
+    file = open(fname, 'r')
+    temp  = re.findall(r'(?<=return )[^.]*', file.read())[0].replace('{', '[').replace('}',']').replace('=',':').replace('[\n','{\n' ).replace(' ]',' }' ).replace('\'', '"').replace('_', '"_"')
+    file.close()
+    f = re.sub("(\w+):", r'"\1":', temp)
+    return json.loads(f)
 
 def copy(t):
     return copy.deepcopy(t)
