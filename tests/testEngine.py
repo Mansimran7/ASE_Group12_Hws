@@ -123,3 +123,6 @@ def cluster():
 def optimize():
     data = DATA(the['file'])
     show(data.sway(),"mid",data.cols.y,1)
+
+def every():
+    repgrid(the['file'])
