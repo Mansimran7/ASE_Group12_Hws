@@ -3,6 +3,8 @@ from help import *
 import math
 import re
 import sys
+import copy
+import json
 from utils import *
 
 # import utils
@@ -34,7 +36,6 @@ def coerce(s1):
         return float(s1)
     else:
         return s1
-
 
 def cli(t):
     for slot,v in t.items():
@@ -120,3 +121,13 @@ def transpose(t, u):
         for j in range(1, len(t)):
             u[i][j] = t[j][i]
     return u
+
+def last(t):
+    return t[len(t)-1]
+
+def dofile(fname):
+    with open(fname) as f:
+        return json.load(f)
+
+def copy(t):
+    return copy.deepcopy(t)
