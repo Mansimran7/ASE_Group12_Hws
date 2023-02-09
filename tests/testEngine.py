@@ -148,3 +148,12 @@ def repcols():
     t = repCols(dofile(the['file']))
     mapp(t.cols.all, oo)
     mapp(t.rows, oo)
+
+def synonyms():
+    show(repCols(dofile(the['file'])).cols.cluster)
+
+def copy():
+    t1 = {"a":1, "b":{"c":2, "d":{3}}}
+    t2 = copy(t1)
+    t2.b.d[1] = 10000
+    print("b4" + o(t1) + "\nafter" + o(t2))
