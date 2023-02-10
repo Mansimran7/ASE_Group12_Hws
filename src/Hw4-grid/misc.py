@@ -4,10 +4,10 @@ import math
 import re
 import sys
 import copy
+from copy import deepcopy
 import json
 from utils import *
 from DATA_class import DATA
-# import utils
 
 def settings(str):
     return dict(re.findall("\n[\s]+[-][\S]+[\s]+[-][-]([\S]+)[^\n]+= ([\S]+)",str))
@@ -133,7 +133,7 @@ def dofile(fname):
     return json.loads(f)
 
 def copy(t):
-    return copy.deepcopy(t)
+    return deepcopy(t)
 
 def repRows(t, rows, u):
     
