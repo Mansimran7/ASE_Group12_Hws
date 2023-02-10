@@ -152,8 +152,8 @@ def repcols():
 def synonyms():
     show(repCols(dofile(the['file'])).cols.cluster)
 
-def copy():
-    t1 = {"a":1, "b":{"c":2, "d":{3}}}
+def test_copy():
+    t1 = {'a':1, 'b':{'c':2, 'd':[3]}}
     t2 = copy(t1)
-    t2.b.d[1] = 10000
-    print("b4" + o(t1) + "\nafter" + o(t2))
+    t2['b']['d'][0] = 10000
+    print('b4' , t1 , '\nafter' , t2)
