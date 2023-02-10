@@ -114,12 +114,12 @@ def many(t, n):
         u.append(any(t))
     return u
 
-def transpose(t, u):
-    u = {}
-    for i in range(1, len(t[1])):
-        u[i] = {}
-        for j in range(1, len(t)):
-            u[i][j] = t[j][i]
+def transpose(t):
+    u = []
+    for i in range(len(t[1])):
+        u.append([])
+        for j in range(len(t)):
+            u[i].append(t[j][i])
     return u
 
 def last(t):
@@ -130,63 +130,62 @@ def dofile(fname):
     temp  = re.findall(r'(?<=return )[^.]*', file.read())[0].replace('{', '[').replace('}',']').replace('=',':').replace('[\n','{\n' ).replace(' ]',' }' ).replace('\'', '"').replace('_', '"_"')
     file.close()
     f = re.sub("(\w+):", r'"\1":', temp)
-    return json.loads(f)
+    return json.loads(re.sub("(\\w+):", r'"\1":', temp))
 
-def copy(t):
-    return deepcopy(t)
+def deepcopy(t):
+    return copy.deepcopy(t)
 
-def repRows(t, rows, u):
+def repRows(t, DATA, rows):
     
-    rows=copy(rows)
+    rows=deepcopy(rows)
     for j,s in enumerate(rows[-1]):
-        rows[1][j] = rows[1][j] + ":" + s
+        rows[0][j] = rows[0][j] + ":" + s
     
     rows.pop()
     for n,row in enumerate(rows):
-        if n==1:
-            row.append("thingX")
+        if n==0:
+            row.append('thingX')
         else:
-            u = t['rows'][len(t['rows']) - n + 2]
-            rows.append(u[len(u)])
+            u = t['rows'][- n]
+            row.append(u[len(u) - 1])
     
     return DATA(rows)
 
-def repCols(cols):
-    cols = copy(cols)
-    for _,col in enumerate(cols):
-        col[-1] = col[1] + ":" + col[-1]
-        for j in range(2,len(col)):
+def repCols(cols, DATA):
+    cols = deepcopy(cols)
+    for col in cols:
+        col[-1] = col[0] + ":" + col[-1]
+        for j in range(1,len(col)):
             col[j-1] = col[j]
-        col[-1] = None
-    cols.insert(1, ['Num' + str(k+1) for k in range(len(cols[1])-1)].append("thingX"))
+        col.pop()
+    cols.insert(0, ['Num' + str(k+1) for k in range(len(cols[1])-1)].append('thingX'))
 
     return DATA(cols)
 
-def repGrid(sFile, t, rows, cols):
+def repGrid(sFile, DATA):
     t = dofile(sFile)
-    rows = repRows(t, transpose(t['cols']))
-    cols = repCols(t['cols'])
+    rows = repRows(t, DATA, transpose(t['cols']))
+    cols = repCols(t['cols'], DATA)
+    show(rows.cluster(),"mid",rows.cols.all,1)
+    show(cols.cluster(),"mid",cols.cols.all,1)
+    repPlace(rows)
 
-    show(rows.cluster())
-    show(cols.cluster())
-    repRows(rows)
-
-def repPlace(data, n, g, maxx, maxy, x, y, c):
+def repPlace(data):
     n,g = 20,{}
     for i in range(1, n+1):
         g[i]={}
         for j in range(1, n+1):
-            g[i][j]=" "
+            g[i][j]=' '
     
     maxy = 0
-    print(" ")
+    print('')
     for r,row in enumerate(data.rows):
-        c = str(chr(64+r))
-        print(c, row.cells[len(row.cells)-1])
+        c = chr(97+r).upper()
+        print(c, row.cells[-1])
         x,y= row.x*n//1, row.y*n//1
-        maxy = math.max(maxy,y+1)
-        g[y+1][x+1] = c 
-    print(" ")
-    for y in range(1, maxy):
-        oo(g[y])
+        maxy = int(max(maxy,y+1))
+        g[y+1][x+1] = c
+    print('')
+    for y in range(1,maxy+1):
+        print(' '.join(g[y].values()))
 

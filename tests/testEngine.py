@@ -49,7 +49,7 @@ def the_func():
     -------
     Bool
     """
-    oo(the)
+    print(the)
     return True
 
 def the_rand():
@@ -88,33 +88,33 @@ def data():
     len_of_rows = len(data.rows)
     return len_of_rows == 398 and data.cols.y[0].w == -1 and data.cols.x[1].at == 1 and len(data.cols.x) == 4
 
-# def stats():
-#     data = DATA(the['file'])
-#     for k, cols in {'y': data.cols.y, 'x':data.cols.x}.items():
-#         print(k, 'mid',data.stats('mid',cols,2))
-#         print(' ','div', data.stats('div',cols,2))
-#     return True
+def stats():
+    data = DATA(the['file'])
+    for k, cols in {'y': data.cols.y, 'x':data.cols.x}.items():
+        print(k, 'mid',data.stats('mid',cols,2))
+        print(' ','div', data.stats('div',cols,2))
+    return True
 
-# def clone_func():
-#     data1 = DATA(the['file'])
-#     data2 = data1.clone(data1.rows)
-#     return len(data1.rows) == len(data2.rows) and data1.cols.y[1].w == data2.cols.y[1].w and data1.cols.x[1].at == data2.cols.x[1].at and len(data1.cols.x) == len(data2.cols.x)
+def clone_func():
+    data1 = DATA(the['file'])
+    data2 = data1.clone(data1.rows)
+    return len(data1.rows) == len(data2.rows) and data1.cols.y[1].w == data2.cols.y[1].w and data1.cols.x[1].at == data2.cols.x[1].at and len(data1.cols.x) == len(data2.cols.x)
 
-# def around():
-#     data = DATA(the['file'])
-#     print(0,0,o(data.rows[1].cells))
-#     # print(0,0,data.rows[1].cells)
-#     for n,t in enumerate(data.around(data.rows[1])):
-#         if (n % 50) == 0:
-#             print(n, rnd(t['dist'],2) ,t['row'].cells)
+def around():
+    data = DATA(the['file'])
+    print(0,0,o(data.rows[1].cells))
+    # print(0,0,data.rows[1].cells)
+    for n,t in enumerate(data.around(data.rows[1])):
+        if (n % 50) == 0:
+            print(n, rnd(t['dist'],2) ,t['row'].cells)
 
-# def half():
-#     data = DATA(the['file'])
-#     left, right, A, B, mid, c = data.half()
-#     print(len(left),len(right),len(data.rows))
-#     print(o(A.cells),c)
-#     print(o(mid.cells))
-#     print(o(B.cells))
+def half():
+    data = DATA(the['file'])
+    left, right, A, B, mid, c = data.half()
+    print(len(left),len(right),len(data.rows))
+    print(o(A.cells),c)
+    print(o(mid.cells))
+    print(o(B.cells))
 
 def cluster():
     data = DATA(the['file'])
@@ -125,35 +125,38 @@ def optimize():
     show(data.sway(),"mid",data.cols.y,1)
 
 def every():
-    repgrid(the['file'])
+    repGrid(the['file'])
 
 def position():
     t = dofile(the['file'])
-    rows = repRows(t, trasnpose(t.cols))
+    rows = repRows(t, DATA, transpose(t['cols']))
     rows.cluster()
     repPlace(rows)
 
 def prototypes():
     t = dofile(the['file'])
-    rows = repRows(t, transpose(t.cols))
-    show(rows.cluster())
+    rows = repRows(t, DATA, transpose(t['cols']))
+    show(rows.cluster(),"mid",rows.cols.all,1)
 
 def reprows():
-    t = dofile(the['file'])
-    rows = reRows(t, transpose(t.cols))
-    mapp(rows.cols.all, oo)
-    mapp(rows.rows, oo)
+    t=dofile(the['file'])
+    rows = repRows(t, DATA, transpose(t['cols']))
+    _ = list(map(oo, rows.cols.all))
+    _ = list(map(oo, rows.rows))
 
 def repcols():
-    t = repCols(dofile(the['file']))
-    mapp(t.cols.all, oo)
-    mapp(t.rows, oo)
+    t = repCols(dofile(the['file'])['cols'], DATA)
+    # t = dofile(the['file'])
+    # t = repCols(t['cols'])
+    _ = list(map(oo, t.cols.all))
+    _ = list(map(oo, t.rows))
 
 def synonyms():
-    show(repCols(dofile(the['file'])).cols.cluster)
+    data = DATA(the['file'])
+    show(repCols(dofile(the['file'])['cols'], DATA).cluster(),"mid",data.cols.all,1)
 
 def test_copy():
     t1 = {'a':1, 'b':{'c':2, 'd':[3]}}
-    t2 = copy(t1)
+    t2 = deepcopy(t1)
     t2['b']['d'][0] = 10000
     print('b4' , t1 , '\nafter' , t2)

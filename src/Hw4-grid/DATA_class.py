@@ -81,19 +81,23 @@ class DATA:
     
     def half(self, rows = None, cols = None, above = None):
         def project(row):
-            return {'row' : row, 'dist' : cosine(dist(row,A), dist(row,B), c)}
+            x, y = cosine(dist(row,A),dist(row,B),c)
+            row.x = row.x or x
+            row.y = row.y or y
+            return {'row' : row, 'x' : x, 'y' : y}
+            # return {'row' : row, 'dist' : cosine(dist(row,A), dist(row,B), c)}
         
         def dist(row1,row2): 
             return self.dist(row1,row2,cols)
         
         rows = rows or self.rows
-        some = many(rows,the['Sample'])
-        A = above or any(some)
-        B = self.around(A,some)[int(the['Far'] * len(rows))//1]['row']
+        # some = many(rows,the['Sample'])
+        A = above or any(rows)
+        B = self.furthest(A,rows)['row']
         c = dist(A,B)
         left, right = [], []
         
-        pairs_of_prows = sorted(list(map(project, rows)), key=lambda k: k["dist"])
+        pairs_of_prows = sorted(list(map(project, rows)), key=lambda k: k["x"])
         
         for n, temp in enumerate(pairs_of_prows):
             if   n <= len(rows) // 2:
@@ -104,26 +108,26 @@ class DATA:
         
         return left, right, A, B, mid, c
 
-    def cluster(self, rows = None, min = None, cols = None, above = None):
+    def cluster(self, rows = None, cols = None, above = None):
         rows = rows or self.rows
-        min = min or ((len(rows))**the['min'])
+        # mid = mid or ((len(rows))**the['mid'])
         cols = cols or self.cols.x
         node = {'data' : self.clone(rows)}
-        if len(rows) > 2*min:
-            left, right, node['A'], node['B'], node['mid'], _ = self.half(rows, cols, above)
-            node['left'] =  self.cluster(left, min, cols, node['A'])
-            node['right'] = self.cluster(right, min, cols, node['B'])
+        if len(rows) >= 2:
+            left, right, node['A'], node['B'], node['mid'], node['c'] = self.half(rows, cols, above)
+            node['left'] =  self.cluster(left, cols, node['A'])
+            node['right'] = self.cluster(right, cols, node['B'])
         return node
         
 
-    # def sway(self, rows = None, min = None, cols = None, above = None):
-    #     rows = rows or self.rows
-    #     min = min or math.pow(len(rows), the['min'])
-    #     cols = cols or self.cols.x
-    #     node = {'data' : self.clone(rows)}
-    #     if len(rows) > 2*min:
-    #         left, right, node['A'], node['B'], node['mid'], _ = self.half(rows,cols,above)
-    #         if self.better(node['B'],node['A']):
-    #             left,right,node['A'],node['B'] = right,left,node['B'],node['A']
-    #         node['left']  = self.sway(left,  min, cols, node['A'])
-    #     return node
+    def sway(self, rows = None, min = None, cols = None, above = None):
+        rows = rows or self.rows
+        min = min or math.pow(len(rows), the['min'])
+        cols = cols or self.cols.x
+        node = {'data' : self.clone(rows)}
+        if len(rows) > 2*min:
+            left, right, node['A'], node['B'], node['mid'], _ = self.half(rows,cols,above)
+            if self.better(node['B'],node['A']):
+                left,right,node['A'],node['B'] = right,left,node['B'],node['A']
+            node['left']  = self.sway(left,  min, cols, node['A'])
+        return node
