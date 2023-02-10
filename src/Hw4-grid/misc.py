@@ -6,7 +6,7 @@ import sys
 import copy
 import json
 from utils import *
-
+from DATA_class import DATA
 # import utils
 
 def settings(str):
@@ -134,3 +134,59 @@ def dofile(fname):
 
 def copy(t):
     return copy.deepcopy(t)
+
+def repRows(t, rows, u):
+    
+    rows=copy(rows)
+    for j,s in enumerate(rows[-1]):
+        rows[1][j] = rows[1][j] + ":" + s
+    
+    rows.pop()
+    for n,row in enumerate(rows):
+        if n==1:
+            row.append("thingX")
+        else:
+            u = t['rows'][len(t['rows']) - n + 2]
+            rows.append(u[len(u)])
+    
+    return DATA(rows)
+
+def repCols(cols):
+    cols = copy(cols)
+    for _,col in enumerate(cols):
+        col[-1] = col[1] + ":" + col[-1]
+        for j in range(2,len(col)):
+            col[j-1] = col[j]
+        col[-1] = None
+    cols.insert(1, ['Num' + str(k+1) for k in range(len(cols[1])-1)].append("thingX"))
+
+    return DATA(cols)
+
+def repGrid(sFile, t, rows, cols):
+    t = dofile(sFile)
+    rows = repRows(t, transpose(t['cols']))
+    cols = repCols(t['cols'])
+
+    show(rows.cluster())
+    show(cols.cluster())
+    repRows(rows)
+
+def repPlace(data, n, g, maxx, maxy, x, y, c):
+    n,g = 20,{}
+    for i in range(1, n+1):
+        g[i]={}
+        for j in range(1, n+1):
+            g[i][j]=" "
+    
+    maxy = 0
+    print(" ")
+    for r,row in enumerate(data.rows):
+        c = str(chr(64+r))
+        print(c, row.cells[len(row.cells)-1])
+        x,y= row.x*n//1, row.y*n//1
+        maxy = math.max(maxy,y+1)
+        g[y+1][x+1] = c 
+    print(" ")
+    for y in range(1, maxy):
+        oo(g[y])
+
