@@ -41,7 +41,10 @@ def oo(t):
         -------
         str
         """
-    print(o(t))
+    temp_dict = t.__dict__
+    temp_dict['a'] = t.__class__.__name__
+    temp_dict['id'] = id(t)
+    print(dict(sorted(temp_dict.items())))
     return t
 
 def rint(low, high):

@@ -1,0 +1,27 @@
+{'dump': False, 'go': 'all', 'seed': 937162211, 'file': '../../etc/data/repgrid1.csv', 'help': False, 'p': 2}
+✅ pass:         the
+✅ pass:         sym
+✅ pass:         num
+b4 {'a': 1, 'b': {'c': 2, 'd': [3]}} 
+after {'a': 1, 'b': {'c': 2, 'd': [10000]}}
+✅ pass:         copy
+{'a': 'Num', 'at': 0, 'hi': 5, 'id': 1343219294336, 'lo': 1, 'm2': 27.6, 'mu': 2.8, 'n': 10, 'txt': 'DevelopmentTool:Application', 'w': 1}
+{'a': 'Num', 'at': 1, 'hi': 5, 'id': 1343219294000, 'lo': 1, 'm2': 33.6, 'mu': 3.2, 'n': 10, 'txt': 'Multimedia:Programming', 'w': 1}
+{'a': 'Num', 'at': 2, 'hi': 5, 'id': 1343219294096, 'lo': 1, 'm2': 18.4, 'mu': 2.4, 'n': 10, 'txt': 'CommunicationTechnology:ApplicationTechnology', 'w': 1}
+{'a': 'Num', 'at': 3, 'hi': 5, 'id': 1343219294048, 'lo': 1, 'm2': 13.599999999999998, 'mu': 2.2000000000000006, 'n': 10, 'txt': 'HumanOrientedTool:SystemTool', 'w': 1}
+{'a': 'Num', 'at': 4, 'hi': 5, 'id': 1343219295008, 'lo': 1, 'm2': 23.6, 'mu': 3.2, 'n': 10, 'txt': 'ConventionalCommunication:NovelCommunication', 'w': 1}
+{'a': 'Num', 'at': 5, 'hi': 5, 'id': 1343219294672, 'lo': 1, 'm2': 20.9, 'mu': 1.9, 'n': 10, 'txt': 'OnlyActAsProgrammed:Semi-autonomous', 'w': -1}
+{'a': 'Num', 'at': 6, 'hi': 5, 'id': 1343219294192, 'lo': 1, 'm2': 25.6, 'mu': 1.8, 'n': 10, 'txt': 'ConventionalSystem:IntelligentSystem', 'w': 1}
+{'a': 'Num', 'at': 7, 'hi': 5, 'id': 1343219294384, 'lo': 1, 'm2': 30.4, 'mu': 2.5999999999999996, 'n': 10, 'txt': 'TargetedOnInterface:TargetedOnOverallSystem', 'w': 1}
+{'a': 'Sym', 'at': 8, 'has': {}, 'id': 1343219294480, 'mode': None, 'most': 0, 'n': 0, 'txt': 'thingX'}
+{'a': 'Row', 'cells': [5, 2, 1, 2, 1, 1, 1, 1, 'ElectronicPublishing'], 'id': 1343219294240}
+{'a': 'Row', 'cells': [3, 1, 3, 1, 5, 4, 1, 1, 'VirtualReality'], 'id': 1343219294528}
+{'a': 'Row', 'cells': [3, 1, 1, 1, 3, 1, 1, 1, 'MultimediaAndHypermedia'], 'id': 1343219294576}
+{'a': 'Row', 'cells': [1, 5, 3, 1, 4, 1, 1, 1, 'VisualProgramming'], 'id': 1343219294768}
+{'a': 'Row', 'cells': [1, 5, 2, 3, 1, 1, 1, 1, 'CrossPlatformGUIs'], 'id': 1343219294864}
+{'a': 'Row', 'cells': [1, 5, 5, 5, 1, 1, 1, 5, 'ObjectOrientedSystems'], 'id': 1343219294912}
+{'a': 'Row', 'cells': [1, 5, 4, 3, 4, 1, 5, 5, 'KnowledgeBasedSystems'], 'id': 1343219295104}
+{'a': 'Row', 'cells': [3, 5, 3, 2, 5, 5, 5, 5, 'IntelligentAgents'], 'id': 1343219295200}
+{'a': 'Row', 'cells': [5, 1, 1, 2, 4, 3, 1, 3, 'InformationHighway'], 'id': 1343219295296}
+{'a': 'Row', 'cells': [5, 2, 1, 2, 4, 1, 1, 3, 'BroadbandNetworks'], 'id': 1343219295392}
+✅ pass:         reprows
