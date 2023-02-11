@@ -125,7 +125,7 @@ def optimize():
     show(data.sway(),"mid",data.cols.y,1)
 
 def every():
-    repGrid(the['file'])
+    repGrid(the['file'], DATA)
 
 def position():
     t = dofile(the['file'])
@@ -146,8 +146,6 @@ def reprows():
 
 def repcols():
     t = repCols(dofile(the['file'])['cols'], DATA)
-    # t = dofile(the['file'])
-    # t = repCols(t['cols'])
     _ = list(map(oo, t.cols.all))
     _ = list(map(oo, t.rows))
 
