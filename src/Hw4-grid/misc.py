@@ -154,12 +154,14 @@ def repRows(t, DATA, rows):
 def repCols(cols, DATA):
     cols = deepcopy(cols)
     for col in cols:
-        col[-1] = col[0] + ":" + col[-1]
-        for j in range(1,len(col)):
+        col[len(col) - 1] = col[0] + ":" + col[len(col) - 1]
+        for j in range(1, len(col)):
             col[j-1] = col[j]
         col.pop()
-    cols.insert(0, ['Num' + str(k+1) for k in range(len(cols[1])-1)].append('thingX'))
-
+    
+    temp = ['Num' + str(k+1) for k in range(len(cols[1])-1)]
+    temp.append("thingX")
+    cols.insert(0, temp)    
     return DATA(cols)
 
 def repGrid(sFile, DATA):
