@@ -33,7 +33,7 @@ if __name__ == "__main__":
     misc.eg('sym', 'check syms', sym)
     misc.eg('num', 'check nums', num)
     misc.eg('copy', 'check copy', test_copy)
-    # misc.eg('repcols', 'checking repcols', repcols)
+    misc.eg('repcols', 'checking repcols', repcols)
     # misc.eg('synonyms', 'checking repcols cluster', synonyms)
     misc.eg('reprows', 'checking reprows', reprows)
     # misc.eg('prototypes','checking reprows cluster', prototypes)
