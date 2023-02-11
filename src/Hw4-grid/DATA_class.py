@@ -76,9 +76,6 @@ class DATA:
         return sorted(list(map(temp, rows or self.rows)), key = lambda k : k["dist"])
     
     def furthest(self, row1, rows = None, cols = None):
-        print("collllll", cols)
-        print("row1", row1)
-        print("row2", rows)
         t = self.around(row1,rows,cols)
         return t[len(t)-1]
     
@@ -99,10 +96,7 @@ class DATA:
         
         rows = rows or self.rows
         # some = many(rows,the['Sample'])
-        print("above value",above)
-        print("rows value", any(rows))
         A = above or rows[1]
-        print("printingAaAA", A)
         B = self.furthest(A,rows)['row']
         c = dist(A,B)
         left, right = [], []
