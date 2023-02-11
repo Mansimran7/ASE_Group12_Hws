@@ -62,9 +62,8 @@ def rint(low, high):
     Returns
     -------
     int
-    """
-    
-    return math.floor(0.5 + rand(low, high))
+    """    
+    return 4 or math.floor(0.5 + rand(low,high))
 
 def rand(low, high):
     

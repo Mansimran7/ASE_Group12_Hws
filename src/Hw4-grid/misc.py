@@ -89,14 +89,14 @@ def kap(t, fun):
     return x
 
 def show(node, what, cols, nPlaces, lvl = 0):
-    if node:
-        print('| '*lvl + str(len(node['data'].rows)) + " ", end = '')
-        if ((not node.get('left')) or (lvl==0)):
-            print(node['data'].stats("mid", node['data'].cols.y, nPlaces))
-        else:
-            print("")
-        show(node.get('left'), what, cols, nPlaces, lvl+1)
-        show(node.get('right'), what, cols, nPlaces, lvl+1)
+  if node:
+    print('|..' * lvl, end = '')
+    if not node.get('left'):
+        print(node['data'].rows[-1].cells[-1])
+    else:
+        print(int(rnd(100*node['c'], 0)))
+    show(node.get('left'), what,cols, nPlaces, lvl+1)
+    show(node.get('right'), what,cols,nPlaces, lvl+1)
 
 def cosine(a, b, c):
     temp = 1 if c == 0 else 2*c
@@ -106,6 +106,7 @@ def cosine(a, b, c):
     return x2, y
 
 def any(t):
+
     return t[rint(0, len(t) - 1)]
 
 def many(t, n):

@@ -49,7 +49,7 @@ class DATA:
             rounded_value = col.rnd(value, nPlaces)
             return rounded_value, col.txt
 
-        return kap(cols or self.cols.y, fun)
+        return misc.kap(cols or self.cols.y, fun)
     
     # def better(self, row1, row2):
         
@@ -67,7 +67,7 @@ class DATA:
         n,d = 0,0
         for col in cols or self.cols.x:
             n = n + 1
-            d = d + math.pow(col.dist(row1.cells[col.at], row2.cells[col.at]), the['p']) 
+            d = d + col.dist(row1.cells[col.at], row2.cells[col.at])**the['p']
         return math.pow((d/n), 1/the['p'])
 
     def around(self, row1, rows = None, cols = None):
@@ -76,14 +76,21 @@ class DATA:
         return sorted(list(map(temp, rows or self.rows)), key = lambda k : k["dist"])
     
     def furthest(self, row1, rows = None, cols = None):
+        print("collllll", cols)
+        print("row1", row1)
+        print("row2", rows)
         t = self.around(row1,rows,cols)
         return t[len(t)-1]
     
     def half(self, rows = None, cols = None, above = None):
         def project(row):
-            x, y = cosine(dist(row,A),dist(row,B),c)
-            row.x = row.x or x
-            row.y = row.y or y
+            x, y = misc.cosine(dist(row,A), dist(row,B), c)
+            try:
+                row.x = row.x
+                row.y = row.y
+            except:
+                row.x = x
+                row.y = y
             return {'row' : row, 'x' : x, 'y' : y}
             # return {'row' : row, 'dist' : cosine(dist(row,A), dist(row,B), c)}
         
@@ -92,7 +99,10 @@ class DATA:
         
         rows = rows or self.rows
         # some = many(rows,the['Sample'])
-        A = above or any(rows)
+        print("above value",above)
+        print("rows value", any(rows))
+        A = above or rows[1]
+        print("printingAaAA", A)
         B = self.furthest(A,rows)['row']
         c = dist(A,B)
         left, right = [], []
@@ -100,7 +110,7 @@ class DATA:
         pairs_of_prows = sorted(list(map(project, rows)), key=lambda k: k["x"])
         
         for n, temp in enumerate(pairs_of_prows):
-            if   n <= len(rows) // 2:
+            if   n < len(rows) // 2:
                 left.append(temp["row"])
                 mid = temp["row"]
             else:
