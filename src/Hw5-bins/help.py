@@ -16,7 +16,7 @@ USAGE: lua bins.lua [OPTIONS] [-g ACTIONS]
   
 OPTIONS:
   -b  --bins    initial number of bins       = 16
-  -c  --cliffs  cliff's delta threshold      = .147
+  -c  --cliffs  cliffs delta threshold      = .147
   -f  --file    data file                    = ../etc/data/auto93.csv
   -F  --Far     distance to distant          = .95
   -g  --go      start-up action              = nothing
@@ -34,7 +34,7 @@ bins: multi-objective semi-supervised discetization\n\
 USAGE: lua bins.lua [OPTIONS] [-g ACTIONS]\n\
 OPTIONS:\n\
   -b  --bins    initial number of bins       = 16\n\
-  -c  --cliffs  cliff's delta threshold      = .147\n\
+  -c  --cliffs  cliffs delta threshold      = .147\n\
   -f  --file    data file                    = ../../etc/data/auto93.csv\n\
   -F  --Far     distance to distant          = .95\n\
   -g  --go      start-up action              = nothing\n\
