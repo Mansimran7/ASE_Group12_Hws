@@ -51,17 +51,17 @@ class DATA:
 
         return misc.kap(cols or self.cols.y, fun)
     
-    # def better(self, row1, row2):
+    def better(self, row1, row2):
         
-    #     s1,s2,ys = 0,0,self.cols.y
-    #     for col in ys:
-    #         x = col.norm(row1.cells[col.at])
-    #         y = col.norm(row2.cells[col.at])
+        s1,s2,ys = 0,0,self.cols.y
+        for col in ys:
+            x = col.norm(row1.cells[col.at])
+            y = col.norm(row2.cells[col.at])
 
-    #         s1 = s1 - math.exp(col.w * (x-y) / len(ys))
-    #         s2 = s2 - math.exp(col.w * (y-x) / len(ys))
+            s1 = s1 - math.exp(col.w * (x-y) / len(ys))
+            s2 = s2 - math.exp(col.w * (y-x) / len(ys))
         
-    #     return s1/len(ys) < s2/len(ys)
+        return s1/len(ys) < s2/len(ys)
 
     def dist(self, row1, row2, cols = None):
         n,d = 0,0

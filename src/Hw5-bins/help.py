@@ -9,22 +9,48 @@ the = {
     'go': None,
     'seed': 937162211,
 }
-
+bins: multi-objective semi-supervised discetization
+(c) 2023 Tim Menzies <timm@ieee.org> BSD-2
+  
+USAGE: lua bins.lua [OPTIONS] [-g ACTIONS]
+  
+OPTIONS:
+  -b  --bins    initial number of bins       = 16
+  -c  --cliffs  cliff's delta threshold      = .147
+  -f  --file    data file                    = ../etc/data/auto93.csv
+  -F  --Far     distance to distant          = .95
+  -g  --go      start-up action              = nothing
+  -h  --help    show help                    = false
+  -H  --Halves  search space for clustering  = 512
+  -m  --min     size of smallest cluster     = .5
+  -M  --Max     numbers                      = 512
+  -p  --p       dist coefficient             = 2
+  -r  --rest    how many of rest to sample   = 4
+  -R  --Reuse   child splits reuse a parent pole = true
+  -s  --seed    random number seed           = 937162211
 help="\n\
-gird.lua : a rep grid processor \n\
-(c)2022, Tim Menzies <timm@ieee.org>, BSD-2 \n\
-USAGE: grid.lua  [OPTIONS] [-g ACTION] \n\
-OPTIONS: \n\
-  -d  --dump    on crash, dump stack   = false \n\
-  -f  --file    name of file           = ../../etc/data/repgrid1.csv \n\
-  -g  --go      start-up action        = data \n\
-  -h  --help    show help              = false \n\
-  -p  --p       distance coefficient   = 2 \n\
-  -s  --seed    random number seed     = 937162211 \n\
-ACTIONS: \n\
+bins: multi-objective semi-supervised discetization\n\
+(c) 2023 Tim Menzies <timm@ieee.org> BSD-2\n\
+USAGE: lua bins.lua [OPTIONS] [-g ACTIONS]\n\
+OPTIONS:\n\
+  -b  --bins    initial number of bins       = 16\n\
+  -c  --cliffs  cliff's delta threshold      = .147\n\
+  -f  --file    data file                    = ../../etc/data/auto93.csv\n\
+  -F  --Far     distance to distant          = .95\n\
+  -g  --go      start-up action              = nothing\n\
+  -h  --help    show help                    = false\n\
+  -H  --Halves  search space for clustering  = 512\n\
+  -m  --min     size of smallest cluster     = .5\n\
+  -M  --Max     numbers                      = 512\n\
+  -p  --p       dist coefficient             = 2\n\
+  -r  --rest    how many of rest to sample   = 4\n\
+  -R  --Reuse   child splits reuse a parent pole = true\n\
+  -s  --seed    random number seed           = 937162211\n\
 "
 Seed = 937162211
 
 egs={}
 
 n = 0
+
+b4 =[]
