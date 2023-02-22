@@ -192,3 +192,59 @@ def repPlace(data):
     for y in range(1,maxy+1):
         print(' '.join(g[y].values()))
 
+def cliffsDelta(ns1, ns2):
+    if(len(ns1)>256):
+        ns1 = many(ns1, 256)
+    if(len(ns2)>256):
+        ns2 = many(ns2, 256)
+    if(len(ns1)>10*len(ns2)):
+        ns1 = many(ns1, 10*len(ns2))
+    if(len(ns2)>10*len(ns1)):
+        ns2= many(ns2, 10*len(ns1))
+    
+    n, gt, lt = 0, 0, 0
+    for _,x in enumerate(ns1):
+        for _,y in enumerate(ns2):
+            n+=1
+            if x > y:
+                gt = gt + 1
+            if x < y: 
+                lt = lt + 1
+    
+    return abs(lt-gt)/n > the['cliffs']
+
+def diffs(nums1, nums2):
+    return kap(nums1, cliffsDelta(nums['has'], nums2[k]['has'], nums.txt))
+
+def showTree(tree, lvl, post):
+    if tree:
+        lvl = lvl or 0
+        print('|..' * len(lvl), end="")
+        print('[' + str(tree(node['data'].rows)), end="")
+        print('] ', end='')
+        if not tree.left or lvl == 0:
+            stats(tree.data)
+        else:
+            print('')
+
+        showTree(tree.left, lvl+1)
+        showTree(tree.right, lvl+1)
+
+def bins(cols, rowss):
+    out =[]
+    for _,col in enumerate(cols):
+        ranges = []
+        for y, rows in enumerate(rowss):
+            for _,row in enumerate(row):
+                x,k = row[cols.at]
+                if x!= '?':
+                    k = bin(col,x)
+                    ranges[k] = ranges[k] or range(col.at, col.txt, x)
+                    extend(ranges[k], x, y)
+        ranges = sort(dict(sorted(ranges.item())).values())
+        if(isinstance(col, SYM)):
+            r = ranges
+        else:
+            mergeAny(ranges)
+        out.append(r)
+    return out
