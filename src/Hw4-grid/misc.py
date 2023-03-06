@@ -192,3 +192,8 @@ def repPlace(data):
     for y in range(1,maxy+1):
         print(' '.join(g[y].values()))
 
+def bin(col, x):
+    if x == "?" or col.isSym:
+        return x
+    tmp = (col.hi - col.lo)/(the["bins"] - 1)
+    return col.hi == col.lo and float(m.(x/tmp + 0.5)*tmp)

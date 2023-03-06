@@ -15,3 +15,8 @@ class BINS:
                     x, k = row[col.at]
                     if x!= "?":
                         k = self.bin(col, x)
+                        ranges[k] = ranges[k] or RANGE(col.at, col.txt, x)
+                        extend(ranges[k], x, y)
+            ranges = sort(map(ranges, itself), lt["l"])
+            out[1 + len(out)] = col.isSym and ranges or mergeAny(ranges)
+        return out 
