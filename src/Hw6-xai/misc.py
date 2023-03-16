@@ -248,3 +248,20 @@ def bins(cols, rowss):
             mergeAny(ranges)
         out.append(r)
     return out
+
+def RULE(ranges,maxSize):
+    t = {}
+    for _, range in ranges:
+        t[range.txt] = t[range.txt] or {}
+        t.append({lo=range.lo,hi=range.hi,at=range.at})
+    return prune(t, maxSize)
+
+def prune(ruke, maxSize):
+    n = 0
+    for txt, ranges in rule:
+        n = n + 1
+        if(len(ranges) == maxSize[txt]):
+            n = n+1
+            rule[txt] = 0
+    if n > 0:
+        return rule
