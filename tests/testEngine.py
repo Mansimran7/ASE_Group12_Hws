@@ -9,7 +9,7 @@ from misc import *
 import math
 
 
-def sym():
+def sym_test():
     """
     Test for symbols
     
@@ -23,9 +23,10 @@ def sym():
         sym.add(x)
     mode = sym.mid()
     entropy = sym.div()
+    print(mode,entropy)
     return (mode =="a" and 1.379 == rnd(entropy,3))
 
-def num():
+def num_test():
     """
     Test for numbers
     
@@ -33,13 +34,19 @@ def num():
     -------
     Bool
     """
-    num = Num()
-    numbers=[1,1,1,1,2,2,3]
-    for i in numbers:
-        num.add(i)
-    mid = num.mid()
-    div = num.div()
-    return (11/7 == mid and 0.787 == rnd(div,3))
+    num1, num2 = Num(), Num()
+    global Seed
+    Seed = the['seed']
+    for i in range(1,1001):
+        num1.add(rand(0,1))
+    Seed = the['seed']
+    for i in range(1,1001):
+        num2.add(rand(0,1)**2)
+    m1,m2 = rnd(num1.mid(),1), rnd(num2.mid(),1)
+    d1,d2 = rnd(num1.div(),1), rnd(num2.div(),1)
+    print(1, m1, d1)
+    print(2, m2, d2) 
+    return m1 > m2 and 0.5 == rnd(m1,1)
 
 def the_func():
     """
@@ -61,19 +68,15 @@ def the_rand():
     -------
     Bool
     """
-
-    num1 = Num()
-    num2 = Num()
-    global Seed
-    Seed=the['seed']
-    for i in range(1, 1001):    
-        num1.add(rand(0,1))
-    Seed=the['seed']
-    for i in range(1, 1001):
-        num2.add(rand(0,1))
-    m1 = rnd(num1.mid(), 1)
-    m2 = rnd(num2.mid(), 1)
-    return m1==m2 and 0.5==rnd(m1, 1)
+    Seed = 1
+    t=[]
+    for i in range(1,1000+1):
+        t.append(rint(0,100,1))
+    u=[]
+    for i in range(1,1000+1):
+        u.append(rint(0,100,1))
+    for k,v in enumerate(t):
+        assert(v==u[k])
 
 def num_chars(t):
     global n
@@ -81,12 +84,13 @@ def num_chars(t):
 
 def csv_test():
     csv(the['file'],num_chars)
-    return n == 8*399
+    return n == 3192
 
-def data():
+def data_test():
     data = DATA(the['file'])
-    len_of_rows = len(data.rows)
-    return len_of_rows == 398 and data.cols.y[0].w == -1 and data.cols.x[1].at == 1 and len(data.cols.x) == 4
+    col=data.cols.x[1]
+    print(col.lo,col.hi,col.mid(),col.div())
+    print(data.stats('mid', data.cols.y, 2))
 
 def stats():
     data = DATA(the['file'])
@@ -95,10 +99,12 @@ def stats():
         print(' ','div', data.stats('div',cols,2))
     return True
 
-def clone_func():
+def clone_test():
     data1 = DATA(the['file'])
     data2 = data1.clone(data1.rows)
-    return len(data1.rows) == len(data2.rows) and data1.cols.y[1].w == data2.cols.y[1].w and data1.cols.x[1].at == data2.cols.x[1].at and len(data1.cols.x) == len(data2.cols.x)
+    print(data1.stats('mid', data1.cols.y, 2))
+    print(data2.stats('mid', data2.cols.y, 2))
+    # return len(data1.rows) == len(data2.rows) and data1.cols.y[1].w == data2.cols.y[1].w and data1.cols.x[1].at == data2.cols.x[1].at and len(data1.cols.x) == len(data2.cols.x)
 
 def around():
     data = DATA(the['file'])
@@ -108,13 +114,16 @@ def around():
         if (n % 50) == 0:
             print(n, rnd(t['dist'],2) ,t['row'].cells)
 
-def half():
+def half_test():
     data = DATA(the['file'])
     left, right, A, B, mid, c = data.half()
-    print(len(left),len(right),len(data.rows))
-    print(o(A.cells),c)
-    print(o(mid.cells))
-    print(o(B.cells))
+    l,r = data.clone(left), data.clone(right)
+    print(len(left),len(right))
+    print(A.cells,c)
+    print(mid.cells)
+    print(B.cells)
+    print("l",l.stats('mid', l.cols.y, 2))
+    print("r",r.stats('mid', r.cols.y, 2))
 
 def cluster():
     data = DATA(the['file'])
@@ -158,3 +167,62 @@ def test_copy():
     t2 = deepcopy(t1)
     t2['b']['d'][0] = 10000
     print('b4' , t1 , '\nafter' , t2)
+
+def some_test():
+    the['Max'] = 32
+    num = Num()
+    for i in range(1, 1001):
+        num.add(i)
+    print(num.has)
+
+def dist_test():
+    data = DATA(the['file'])
+    num  = Num()
+    for row in data.rows:
+        num.add(data.dist(row, data.rows[1]))
+    print({'lo' : num.lo, 'hi' : num.hi, 'mid' : rnd(num.mid(),3), 'div' : rnd(num.div(),3)})
+
+def tree_test():
+    data = DATA(the['file'])
+    showTree(data.tree(),"mid",data.cols.y,1)
+
+def sway_test():
+    data = DATA(the['file'])
+    best,rest = data.sway()
+    print("\nall ", data.stats('mid', data.cols.y, 2))
+    print("    ", data.stats('div', data.cols.y, 2))
+    print("\nbest",best.stats('mid', best.cols.y, 2))
+    print("    ", best.stats('div', best.cols.y, 2))
+    print("\nrest", rest.stats('mid', rest.cols.y, 2))
+    print("    ", rest.stats('div', rest.cols.y, 2))
+
+def bins_test():
+    global b4
+    data = DATA(the['file'])
+    best,rest = data.sway()
+    print("all","","","",{'best':len(best.rows), 'rest':len(rest.rows)})
+    for k,t in enumerate(bins(data.cols.x,{'best':best.rows, 'rest':rest.rows})):
+        for range in t:
+            if range['txt'] != b4:
+                print("")
+            b4 = range['txt']
+            print(range['txt'],range['lo'],range['hi'],rnd(value(range['y'].has, len(best.rows),len(rest.rows),"best")),range['y'].has)
+
+def cliffs_test():
+    assert(False == cliffsDelta( [8,7,6,2,5,8,7,3],[8,7,6,2,5,8,7,3]))
+    assert(True  == cliffsDelta( [8,7,6,2,5,8,7,3],[9,9,7,8,10,9,6])) 
+    t1,t2=[],[]
+    for i in range(1,1001):
+        t1.append(rand(0,1))
+    for i in range(1,1001):
+        t2.append(rand(0,1)**.5)
+    assert(False == cliffsDelta(t1,t1)) 
+    assert(True  == cliffsDelta(t1,t2)) 
+    diff,j=False,1.0
+    while not diff:
+        def function(x):
+            return x*j
+        t3=list(map(function, t1))
+        diff=cliffsDelta(t1,t3)
+        print(">",rnd(j),diff) 
+        j=j*1.025

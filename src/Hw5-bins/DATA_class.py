@@ -124,14 +124,40 @@ class DATA:
         return node
         
 
-    def sway(self, rows = None, min = None, cols = None, above = None):
+    # def sway(self, rows = None, min = None, cols = None, above = None):
+    #     rows = rows or self.rows
+    #     min = min or math.pow(len(rows), the['min'])
+    #     cols = cols or self.cols.x
+    #     node = {'data' : self.clone(rows)}
+    #     if len(rows) > 2*min:
+    #         left, right, node['A'], node['B'], node['mid'], _ = self.half(rows,cols,above)
+    #         if self.better(node['B'],node['A']):
+    #             left,right,node['A'],node['B'] = right,left,node['B'],node['A']
+    #         node['left']  = self.sway(left,  min, cols, node['A'])
+    #     return node
+
+    def tree(self, rows = None , mini = None, cols = None, above = None):
         rows = rows or self.rows
-        min = min or math.pow(len(rows), the['min'])
+        mini  = mini or len(rows)**the['min']
         cols = cols or self.cols.x
-        node = {'data' : self.clone(rows)}
-        if len(rows) > 2*min:
+        node = { 'data' : self.clone(rows) }
+        if len(rows) >= 2*mini:
             left, right, node['A'], node['B'], node['mid'], _ = self.half(rows,cols,above)
-            if self.better(node['B'],node['A']):
-                left,right,node['A'],node['B'] = right,left,node['B'],node['A']
-            node['left']  = self.sway(left,  min, cols, node['A'])
+            node['left']  = self.tree(left,  mini, cols, node['A'])
+            node['right'] = self.tree(right, mini, cols, node['B'])
         return node
+    
+    def sway(self):
+        data = self
+        def worker(rows, worse, above = None):
+            if len(rows) <= len(data.rows)**the['min']: 
+                return rows, misc.many(worse, the['rest']*len(rows))
+            else:
+                l,r,a,b,_,_ = self.half(rows, None, above)
+                if self.better(b,a):
+                    l,r,a,b = r,l,b,a
+                for row in r:
+                    worse.append(row)
+                return worker(l,worse,a)
+        best,rest = worker(data.rows,[])
+        return self.clone(best), self.clone(rest)

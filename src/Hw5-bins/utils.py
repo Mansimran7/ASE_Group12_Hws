@@ -47,7 +47,7 @@ def oo(t):
     print(dict(sorted(temp_dict.items())))
     return t
 
-def rint(low, high):
+def rint(low, high, Seed = None):
 
     """
     Returns a integer value closest to specified value
@@ -63,9 +63,9 @@ def rint(low, high):
     -------
     int
     """    
-    return 4 or math.floor(0.5 + rand(low,high))
+    return math.floor(0.5 + rand(low,high, Seed))
 
-def rand(low, high):
+def rand(low, high, mSeed = None):
     
     """
     Returns a random number between 0 and 1
@@ -85,11 +85,11 @@ def rand(low, high):
     low = low or 0
     high = high or 1
     global Seed
-    Seed = (16807 * Seed) % 2147483647
+    Seed = 1 if mSeed else (16807 * Seed) % 2147483647
     result = low + (high-low) * Seed / 2147483647
     return result
 
-def rnd(x, places):
+def rnd(x, places = 3):
     """
         Rounds of to nearest integer upto specified places.
         
