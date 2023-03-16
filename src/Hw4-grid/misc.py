@@ -196,4 +196,4 @@ def bin(col, x):
     if x == "?" or col.isSym:
         return x
     tmp = (col.hi - col.lo)/(the["bins"] - 1)
-    return col.hi == col.lo and float(m.(x/tmp + 0.5)*tmp)
+    return col.hi == col.lo and float((x/tmp + 0.5)*tmp)
