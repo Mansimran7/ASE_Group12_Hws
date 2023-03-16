@@ -23,7 +23,7 @@ OPTIONS:\n\
   -h  --help    show help                    = false\n\
   -H  --Halves  search space for clustering  = 512\n\
   -m  --min     size of smallest cluster     = .5\n\
-  -M  --Max     numbers                      = 512
+  -M  --Max     numbers                      = 512\n\
   -p  --p       dist coefficient             = 2\n\
   -r  --rest    how many of rest to sample   = 4\n\
   -R  --Reuse   child splits reuse a parent pole = true\n\
