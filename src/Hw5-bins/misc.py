@@ -303,3 +303,44 @@ def mergeAny(ranges0):
         ranges1.append(left)
         j = j+1
     return noGaps(ranges0) if len(ranges0)==len(ranges1) else mergeAny(ranges1)
+
+def firstN(sort_ranges,s_fun):
+    
+    print(" ")
+    
+    def function(num):
+        
+        print(num['range']['txt'],
+              num['range']['lo'],
+              num['range']['hi'],
+              rnd(num['val']),
+              num['range']['y'].has)
+    
+    _ = list(map(function, sort_ranges))
+    
+    #Next line
+    print()
+    
+    first_val = sort_ranges[0]['val']
+    
+    def useful(val):
+        if val['val']> first_val/10 and val['val']>.05:
+            return val
+    
+    sort_ranges = [x for x in sort_ranges if useful(x)]
+    
+    most,out = -1, -1
+    
+    
+    for n in range(1,len(sort_ranges)+1):
+        
+        sliced_val = sort_ranges[0:n]
+        
+        slice_val_range = [x['range'] for x in sliced_val]
+        
+        tmp,rule = s_fun(slice_val_range)
+        
+        if tmp and tmp > most:
+            out,most = rule,tmp
+    
+    return out,most
