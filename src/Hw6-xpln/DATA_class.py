@@ -143,3 +143,10 @@ class DATA:
                 return worker(l,worse,evals+evals1,a)
         best,rest,evals1 = worker(data.rows,[],0)
         return self.clone(best), self.clone(rest), evals1
+    
+    def RULE(ranges, maxSize):
+        t = {}
+        for _, range in ranges:
+            t[range['txt'] = t[range['txt']] or {}
+            t[range['txt']].append({'lo' : range['lo'],'hi' : range['hi','at':range['at']]})
+        return prune(t, maxSize)
