@@ -1,6 +1,7 @@
 import math
 import random
 from utils import rnd
+from help import the
 
 class Num:
     """
@@ -47,6 +48,7 @@ class Num:
         self.lo = math.inf
         self.hi = -math.inf
         self.w = -1 if "-" in self.txt else 1
+        self.has = {}
 
 
     def add(self, v):
@@ -66,6 +68,8 @@ class Num:
         """
         if v!="?":
             self.n = self.n+1
+            if self.n <= the['Max']:
+                self.has[v]= v
             d = v - self.mu
             self.mu = self.mu + d/self.n
             self.m2 = self.m2 + d*(v - self.mu)
