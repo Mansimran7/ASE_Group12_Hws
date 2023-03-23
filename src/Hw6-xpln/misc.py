@@ -313,3 +313,33 @@ def prune(rule, maxSize):
             rule[txt] = 0
     if n > 0:
         return rule
+
+def firstN(sort_ranges,s_fun):
+    
+    print(" ")
+    def function(num):
+        print(num['range']['txt'],
+              num['range']['lo'],
+              num['range']['hi'],
+              rnd(num['val']),
+              num['range']['y'].has)
+    
+    def useful(val):
+        if val['val']> first_val/10 and val['val']>.05:
+            return val
+    
+    _ = list(map(function, sort_ranges))
+    print()
+    
+    first_val = sort_ranges[0]['val']
+    sort_ranges = [x for x in sort_ranges if useful(x)]
+    
+    most,out = -1, -1
+    for n in range(1,len(sort_ranges)+1):
+        sliced_val = sort_ranges[0:n]
+        slice_val_range = [x['range'] for x in sliced_val]
+        temp,rule = s_fun(slice_val_range)
+        if temp and temp > most:
+            out,most = rule,temp
+    
+    return out,most
