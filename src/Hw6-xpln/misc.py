@@ -89,6 +89,15 @@ def kap(t, fun):
         x[k or len(x)] = i
     return x
 
+def dkap(t, fun):
+    u = {}
+    if t == -1:
+        t = (-1, -1)
+    for k,v in t.items():
+        v, k = fun(k,v) 
+        u[k or len(u)] = v
+    return u
+
 def showTree(node, what, cols, nPlaces, lvl = 0):
   if node:
     print('|.. ' * lvl + '[' + str(len(node['data'].rows)) + ']' + '  ', end = '')
@@ -306,11 +315,11 @@ def mergeAny(ranges0):
 
 def prune(rule, maxSize):
     n = 0
-    for txt, ranges in rule:
+    for txt, ranges in rule.items():
         n = n + 1
         if(len(ranges) == maxSize[txt]):
             n = n+1
-            rule[txt] = 0
+            rule[txt] = None
     if n > 0:
         return rule
 
