@@ -143,3 +143,36 @@ class DATA:
                 return worker(l,worse,evals+evals1,a)
         best,rest,evals1 = worker(data.rows,[],0)
         return self.clone(best), self.clone(rest), evals1
+    
+    def RULE(ranges, maxSize):
+        t = {}
+        for _, range in ranges:
+            t[range['txt'] = t[range['txt']] or {}
+            t[range['txt']].append({'lo' : range['lo'],'hi' : range['hi','at':range['at']]})
+        return prune(t, maxSize)
+
+    def showRule(self, rule):
+        def pretty(range):
+            return range['lo'] if range['lo'] == range['hi'] else [range['lo'], range['hi']]
+        def merge(t0):
+            t,j = [],1
+            while j <= len(t0):
+                left, right = t0[j], t0[j+1]
+                if right and left['hi'] == right['lo']:
+                    left['hi'] = right['hi']
+                    j = j + 1
+            t.append('lo' = left['lo'], 'hi' = left['hi'])
+            j = j + 1
+            return t if len(t0)==len(t) else merge(t)
+        def merges(attr, ranges):
+            return(list(map(pretty, merge(sorted(ranges, key = itemgetter('lo')))))), attr
+        return kap(rule, merges)
+
+    def better(self, row1, row2):
+        s1, s2, ys = 0, 0, self.cols.y
+        for _,col in ys:
+            x = col.norm(row1.cells[col.at])
+            y = col.norm(row2.cells[col.at])
+            s1 = s1 - math.exp(col.w * (x-y)/len(ys))
+            s2 = s2 - math.exp(col.w * (y-x)/len(ys))
+        return s1/len(ys) < s2/len(ys)
