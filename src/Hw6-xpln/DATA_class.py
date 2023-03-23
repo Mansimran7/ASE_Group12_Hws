@@ -150,3 +150,20 @@ class DATA:
             t[range['txt'] = t[range['txt']] or {}
             t[range['txt']].append({'lo' : range['lo'],'hi' : range['hi','at':range['at']]})
         return prune(t, maxSize)
+
+    def showRule(self, rule):
+        def pretty(range):
+            return range['lo'] if range['lo'] == range['hi'] else [range['lo'], range['hi']]
+        def merge(t0):
+            t,j = [],1
+            while j <= len(t0):
+                left, right = t0[j], t0[j+1]
+                if right and left['hi'] == right['lo']:
+                    left['hi'] = right['hi']
+                    j = j + 1
+            t.append('lo' = left['lo'], 'hi' = left['hi'])
+            j = j + 1
+            return t if len(t0)==len(t) else merge(t)
+        def merges(attr, ranges):
+            return(list(map(pretty, merge(sorted(ranges, key = itemgetter('lo')))))), attr
+        return kap(rule, merges)  
