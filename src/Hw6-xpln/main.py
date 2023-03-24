@@ -46,5 +46,5 @@ if __name__ == "__main__":
     misc.eg('tree', 'make snd show tree of clusters', tree_test)
     misc.eg('sway', 'optimizing', sway_test)
     misc.eg('bins', 'find deltas between best and rest', bins_test)
-    # misc.eg('xpln', 'explore explanation sets', test_xpln)
+    misc.eg('xpln', 'explore explanation sets', test_xpln)
     main()

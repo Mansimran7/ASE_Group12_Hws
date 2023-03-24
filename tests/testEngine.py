@@ -189,7 +189,7 @@ def tree_test():
 
 def sway_test():
     data = DATA(the['file'])
-    best,rest = data.sway()
+    best,rest,_ = data.sway()
     print("\nall ", data.stats('mid', data.cols.y, 2))
     print("    ", data.stats('div', data.cols.y, 2))
     print("\nbest",best.stats('mid', best.cols.y, 2))
@@ -200,7 +200,7 @@ def sway_test():
 def bins_test():
     global b4
     data = DATA(the['file'])
-    best,rest = data.sway()
+    best,rest,_ = data.sway()
     print("all","","","",{'best':len(best.rows), 'rest':len(rest.rows)})
     for k,t in enumerate(bins(data.cols.x,{'best':best.rows, 'rest':rest.rows})):
         for range in t:
@@ -213,20 +213,16 @@ def test_xpln():
     data = DATA(the['file'])
     best,rest,evals = data.sway()
     rule,most= data.xpln(best,rest)
-
     print("\n-----------\nexplain=", data.showRule(rule))
-
     selects = data.selects(rule,data.rows)
     data_selects = [s for s in selects if s!=None]
     data1= data.clone(data_selects)
-
     print("all               ",data.stats('mid', data.cols.y, 2),data.stats('div', data.cols.y, 2))
     print("sway with",evals,"evals",best.stats('mid', best.cols.y, 2),best.stats('div', best.cols.y, 2))
     print("xpln on",evals,"evals",data1.stats('mid', data1.cols.y, 2),data1.stats('div', data1.cols.y, 2))
-    
-    t,_ = data.betters(len(best.rows))
-    t = data.clone(t)
-    print("sort with",len(data.rows),"evals",t.stats('mid', t.cols.y, 2),t.stats('div', t.cols.y, 2))
+    top,_ = data.betters(len(best.rows))
+    top = data.clone(top)
+    print("sort with",len(data.rows),"evals",top.stats('mid', top.cols.y, 2),top.stats('div', top.cols.y, 2))
 
 def cliffs_test():
     assert(False == cliffsDelta( [8,7,6,2,5,8,7,3],[8,7,6,2,5,8,7,3]))

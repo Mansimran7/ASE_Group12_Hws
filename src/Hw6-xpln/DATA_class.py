@@ -145,7 +145,7 @@ class DATA:
         best,rest,evals1 = worker(data.rows,[],0)
         return self.clone(best), self.clone(rest), evals1
     
-    def RULE(ranges, maxSize):
+    def RULE(self,ranges, maxSize):
         t = {}
         for range in ranges:
             t[range['txt']] = t.get(range['txt']) or []
@@ -185,36 +185,31 @@ class DATA:
             s2 = s2 - math.exp(col.w * (y-x)/len(ys))
         return s1/len(ys) < s2/len(ys)
 
-    def xpln(self, best, rest):
-
+    def xpln(self,best,rest):
+        tmp,maxSizes = [],{}
         def v(has):
             return misc.value(has, len(best.rows), len(rest.rows), "best")
-        
         def score(ranges):
-            rule = DATA.RULE(ranges, maxSizes)
-            
+            rule = self.RULE(ranges,maxSizes)
             if rule:
                 print(self.showRule(rule))
-                bestr = self.selects(rule, best.rows)
-                restr = self.selects(rule, rest.rows)
-
-                if (len(bestr) + len(restr)) > 0:
-                    return v({best: len(bestr), rest:len(restr)}), rule
-
-        tmp,maxSizes = [],{}
+                bestr= self.selects(rule, best.rows)
+                restr= self.selects(rule, rest.rows)
+                if len(bestr) + len(restr) > 0: 
+                    return v({'best': len(bestr), 'rest':len(restr)}),rule
         for ranges in misc.bins(self.cols.x,{'best':best.rows, 'rest':rest.rows}):
             maxSizes[ranges[1]['txt']] = len(ranges)
-            print("") 
-
+            print("")
             for range in ranges:
                 print(range['txt'], range['lo'], range['hi'])
                 tmp.append({'range':range, 'max':len(ranges),'val': v(range['y'].has)})
-            
+        rule,most=misc.firstN(sorted(tmp, key=itemgetter('val')),score)
+        return rule,most
+    
+    def betters(self,n):
+        tmp=sorted(self.rows, key=lambda row: self.better(row, self.rows[self.rows.index(row)-1]))
+        return  n and tmp[0:n], tmp[n+1:]  or tmp
         
-        rule,most=misc.firstN(sorted(tmp, key=itemgetter('val')),score) 
-
-        return rule, most
-
     def selects(self, rule, rows):
         def disjunction(ranges, row):
             for range in ranges:
