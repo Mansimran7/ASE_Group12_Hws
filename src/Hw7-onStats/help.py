@@ -17,7 +17,7 @@ OPTIONS:\n\
   -b  --bins    initial number of bins       = 16\n\
   -c  --cliffs  cliff's delta threshold      = .147\n\
   -d  --d       different is over sd*d       = .35\n\
-  -f  --file    data file                    = ../etc/data/auto93.csv\n\
+  -f  --file    data file                    = ../../etc/data/auto93.csv\n\
   -F  --Far     distance to distant          = .95\n\
   -g  --go      start-up action              = nothing\n\
   -h  --help    show help                    = false\n\

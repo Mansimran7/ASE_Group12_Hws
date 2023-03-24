@@ -8,6 +8,8 @@ from copy import deepcopy
 import json
 from utils import *
 from DATA_class import DATA
+from sym_class import Sym
+from utils import *
 
 def settings(str):
     return dict(re.findall("\n[\s]+[-][\S]+[\s]+[-][-]([\S]+)[^\n]+= ([\S]+)",str))
@@ -88,15 +90,22 @@ def kap(t, fun):
         x[k or len(x)] = i
     return x
 
-def show(node, what, cols, nPlaces, lvl = 0):
+def dkap(t, fun):
+    u = {}
+    for k,v in t.items():
+        v, k = fun(k,v) 
+        u[k or len(u)] = v
+    return u
+
+def showTree(node, what, cols, nPlaces, lvl = 0):
   if node:
-    print('|..' * lvl, end = '')
-    if not node.get('left'):
-        print(node['data'].rows[-1].cells[-1])
+    print('|.. ' * lvl + '[' + str(len(node['data'].rows)) + ']' + '  ', end = '')
+    if not node.get('left') or lvl == 0:
+        print(node['data'].stats("mid",node['data'].cols.y,nPlaces))
     else:
-        print(int(rnd(100*node['c'], 0)))
-    show(node.get('left'), what,cols, nPlaces, lvl+1)
-    show(node.get('right'), what,cols,nPlaces, lvl+1)
+        print('')
+    showTree(node.get('left'), what,cols, nPlaces, lvl+1)
+    showTree(node.get('right'), what,cols,nPlaces, lvl+1)
 
 def cosine(a, b, c):
     temp = 1 if c == 0 else 2*c
@@ -106,7 +115,6 @@ def cosine(a, b, c):
     return x2, y
 
 def any(t):
-
     return t[rint(0, len(t) - 1)]
 
 def many(t, n):
@@ -216,52 +224,129 @@ def cliffsDelta(ns1, ns2):
 def diffs(nums1, nums2):
     return kap(nums1, cliffsDelta(nums['has'], nums2[k]['has'], nums.txt))
 
-def showTree(tree, lvl, post):
-    if tree:
-        lvl = lvl or 0
-        print('|..' * len(lvl), end="")
-        print('[' + str(tree(node['data'].rows)), end="")
-        print('] ', end='')
-        if not tree.left or lvl == 0:
-            stats(tree.data)
-        else:
-            print('')
-
-        showTree(tree.left, lvl+1)
-        showTree(tree.right, lvl+1)
-
 def bins(cols, rowss):
     out =[]
-    for _,col in enumerate(cols):
-        ranges = []
-        for y, rows in enumerate(rowss):
-            for _,row in enumerate(row):
-                x,k = row[cols.at]
+    for col in cols:
+        ranges = {}
+        for y, rows in rowss.items():
+            for row in rows:
+                x = row.cells[col.at]
                 if x!= '?':
-                    k = bin(col,x)
-                    ranges[k] = ranges[k] or range(col.at, col.txt, x)
+                    k = int(bin(col,x))
+                    if not k in ranges:
+                        ranges[k] = RANGE(col.at, col.txt, x)
                     extend(ranges[k], x, y)
-        ranges = sort(dict(sorted(ranges.item())).values())
-        if(isinstance(col, SYM)):
+        ranges = list(dict(sorted(ranges.items())).values())
+        if(isinstance(col, Sym)):
             r = ranges
         else:
-            mergeAny(ranges)
+            r = mergeAny(ranges)
         out.append(r)
     return out
 
-def RULE(ranges,maxSize):
-    t = {}
-    for _, range in ranges:
-        t[range.txt] = t[range.txt] or {}
-        t.append({lo=range.lo,hi=range.hi,at=range.at})
-    return prune(t, maxSize)
+def bin(col,x):
+    if x=="?" or isinstance(col, Sym):
+        return x
+    tmp = (col.hi - col.lo)/(the['bins'] - 1)
+    return  1 if col.hi == col.lo else math.floor(x/tmp + 0.5)*tmp
 
-def prune(ruke, maxSize):
+def merge(col1,col2):
+  new = deepcopy(col1)
+  if isinstance(col1, Sym):
+      for n in col2.has:
+        new.add(n)
+  else:
+    for n in col2.has:
+        new.add(new,n)
+    new.lo = min(col1.lo, col2.lo)
+    new.hi = max(col1.hi, col2.hi) 
+  return new
+
+def RANGE(at,txt,lo,hi=None):
+    return {'at':at,'txt':txt,'lo':lo,'hi':lo or hi or lo,'y':Sym()}
+
+def extend(range,n,s):
+    range['lo'] = min(n, range['lo'])
+    range['hi'] = max(n, range['hi'])
+    range['y'].add(s)
+
+def itself(x):
+    return x
+
+def value(has,nB = None, nR = None, sGoal = None):
+    sGoal,nB,nR = sGoal or True, nB or 1, nR or 1
+    b,r = 0,0
+    for x,n in has.items():
+        if x==sGoal:
+            b = b + n
+        else:
+            r = r + n
+    b,r = b/(nB+1/float("inf")), r/(nR+1/float("inf"))
+    return b**2/(b+r)
+
+
+def merge2(col1,col2):
+  new = merge(col1,col2)
+  if new.div() <= (col1.div()*col1.n + col2.div()*col2.n)/new.n:
+    return new
+
+def mergeAny(ranges0):
+    def noGaps(t):
+        for j in range(1,len(t)):
+            t[j]['lo'] = t[j-1]['hi']
+        t[0]['lo']  = float("-inf")
+        t[len(t)-1]['hi'] =  float("inf")
+        return t
+
+    ranges1,j = [],0
+    while j <= len(ranges0)-1:
+        left = ranges0[j]
+        right = None if j == len(ranges0)-1 else ranges0[j+1]
+        if right:
+            y = merge2(left['y'], right['y'])
+            if y:
+                j = j+1
+                left['hi'], left['y'] = right['hi'], y
+        ranges1.append(left)
+        j = j+1
+    return noGaps(ranges0) if len(ranges0)==len(ranges1) else mergeAny(ranges1)
+
+def prune(rule, maxSize):
     n = 0
-    for txt, ranges in rule:
+    for txt, ranges in rule.items():
         n = n + 1
         if(len(ranges) == maxSize[txt]):
             n = n+1
-            rule[txt] = 0
+            rule[txt] = None
     if n > 0:
         return rule
+
+def firstN(sort_ranges,s_fun):
+    
+    print(" ")
+    def function(num):
+        print(num['range']['txt'],
+              num['range']['lo'],
+              num['range']['hi'],
+              rnd(num['val']),
+              num['range']['y'].has)
+    
+    def useful(val):
+        if val['val']> first_val/10 and val['val']>.05:
+            return val
+    
+    _ = list(map(function, sort_ranges))
+    print()
+    
+    first_val = sort_ranges[0]['val']
+    sort_ranges = [x for x in sort_ranges if useful(x)]
+    
+    most,out = -1, -1
+    for n in range(1,len(sort_ranges)+1):
+        sliced_val = sort_ranges[0:n]
+        slice_val_range = [x['range'] for x in sliced_val]
+        temp,rule = s_fun(slice_val_range)
+        if temp and temp > most:
+            out,most = rule,temp
+    
+    return out,most
