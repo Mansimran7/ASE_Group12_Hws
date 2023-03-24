@@ -9,6 +9,7 @@ import json
 from utils import *
 from DATA_class import DATA
 from sym_class import Sym
+from utils import *
 
 def settings(str):
     return dict(re.findall("\n[\s]+[-][\S]+[\s]+[-][-]([\S]+)[^\n]+= ([\S]+)",str))
@@ -91,8 +92,6 @@ def kap(t, fun):
 
 def dkap(t, fun):
     u = {}
-    if t == -1:
-        t = (-1, -1)
     for k,v in t.items():
         v, k = fun(k,v) 
         u[k or len(u)] = v
@@ -116,7 +115,6 @@ def cosine(a, b, c):
     return x2, y
 
 def any(t):
-
     return t[rint(0, len(t) - 1)]
 
 def many(t, n):
