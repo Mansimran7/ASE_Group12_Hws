@@ -8,6 +8,12 @@ the = {
     'dump': False,
     'go': None,
     'seed': 937162211,
+    'bootstrap':512, 
+    'conf':0.05, 
+    'cliff':.4, 
+    'cohen':.35,
+    'Fmt': "{:.2f}", 
+    'width':40
 }
 help="\n\
 bins: multi-objective semi-supervised discetization\n\

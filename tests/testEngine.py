@@ -3,7 +3,7 @@ import sys
 sys.path.append(sys.path[0]+'\\..\\src\\')
 from num_class import Num
 from sym_class import Sym
-from DATA_class import DATA
+# from DATA_class import DATA
 from utils import *
 from misc import *
 import math
@@ -25,6 +25,22 @@ def sym_test():
     entropy = sym.div()
     print(mode,entropy)
     return (mode =="a" and 1.379 == rnd(entropy,3))
+
+def num_test7():
+    n = Num()
+    for i in range(1,10+1):
+        n.add(i)
+    print("",n.n,n.mu,n.sd)
+    return True
+
+def ok_test(n=1):
+    random.seed(n)
+    return True
+
+def sample_test():
+    for i in range(1,10+1): 
+        print("",''.join(samples(["a","b","c","d","e"]).values()))
+    return True
 
 def num_test():
     """
@@ -242,3 +258,12 @@ def cliffs_test():
         diff=cliffsDelta(t1,t3)
         print(">",rnd(j),diff) 
         j=j*1.025
+
+def gauss_test():
+    t=[]
+    for i in range(1,10**4+1):
+        t.append(misc.gaussian(10,2))
+    n=Num()
+    for i in t:
+        n.add(i)
+    print("",n.n,n.mu,n.sd)

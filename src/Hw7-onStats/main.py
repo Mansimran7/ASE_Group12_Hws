@@ -2,7 +2,7 @@ from misc import *
 import misc
 from utils import *
 import sys
-from DATA_class import *
+# from DATA_class import *
 sys.path.append(sys.path[0]+'\\..\\..\\tests\\')
 from testEngine import *
 
@@ -33,18 +33,15 @@ def main():
     sys.exit(fails)
 
 if __name__ == "__main__":
-    misc.eg('the', 'show options', the_func)
-    misc.eg('rand', 'demo random number generation', the_rand)
-    misc.eg('some', 'demo of reservoir sampling', some_test)
-    misc.eg('nums', 'demo of NUM', num_test)
-    misc.eg('sym', 'demo SYMS', sym_test)
-    misc.eg('csv', 'reading csv files', csv_test)
-    misc.eg('data', 'showing DATA sets', data_test)
-    misc.eg('clone', 'replicate structure of a DATA', clone_test)
-    misc.eg('cliffs', 'start tests', cliffs_test)
-    misc.eg('dist', 'distance test', dist_test)
-    misc.eg('tree', 'make snd show tree of clusters', tree_test)
-    misc.eg('sway', 'optimizing', sway_test)
-    misc.eg('bins', 'find deltas between best and rest', bins_test)
-    misc.eg('xpln', 'explore explanation sets', test_xpln)
+    misc.eg('ok', 'ok', ok_test)
+    misc.eg('sample', 'sample', sample_test)
+    misc.eg('nums', 'nums', num_test7)
+    misc.eg('gauss', 'gauss', gauss_test)
+    # misc.eg('bootmu', 'bootmu', bootmu_test)
+    # misc.eg('basic', 'basic', basic_test)
+    # misc.eg('pre', 'pre', pre_test)
+    # misc.eg('five', 'five', five_test)
+    # misc.eg('six', 'six', six_test)
+    # misc.eg('tiles', 'tiles', tiles_test)
+    # misc.eg('sk', 'sk', sk_test)
     main()

@@ -45,6 +45,7 @@ class Num:
         self.n = 0
         self.mu = 0
         self.m2 = 0
+        self.sd = 0
         self.lo = math.inf
         self.hi = -math.inf
         self.w = -1 if "-" in self.txt else 1
@@ -73,6 +74,7 @@ class Num:
             d = v - self.mu
             self.mu = self.mu + d/self.n
             self.m2 = self.m2 + d*(v - self.mu)
+            self.sd =  0 if self.n<2 else (self.m2/(self.n - 1))**.5
             self.lo = min(v, self.lo)
             self.hi = max(v, self.hi)
         return self
