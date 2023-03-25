@@ -1,13 +1,14 @@
 import utils
 from help import *
 import math
+import random
 import re
 import sys
 import copy
 from copy import deepcopy
 import json
 from utils import *
-from DATA_class import DATA
+# from DATA_class import DATA
 from sym_class import Sym
 from utils import *
 
@@ -350,3 +351,15 @@ def firstN(sort_ranges,s_fun):
             out,most = rule,temp
     
     return out,most
+
+def samples(t, n=None):
+    x = {}
+    for i in range(1, (n or len(t)) + 1):
+        x[i] = t[random.randint(0, len(t) - 1)]
+    return x
+
+
+def gaussian(mu, sd):
+    mu, sd = mu or 0, sd or 1
+    sq, pi, log, cos, r = math.sqrt, math.pi, math.log, math.cos, random.random
+    return mu + sd * sq(-2 * log(r())) * cos(2 * pi * r())
