@@ -434,3 +434,48 @@ def rxs_sort(rxs):
             if mid(x) < mid(y):
                 rxs[j],rxs[i]=rxs[i],rxs[j]
     return rxs
+
+def tiles(rxs):
+
+    inf = float('inf')
+    low, high = inf, float('-inf')
+
+    for rx in rxs:
+        low, high = min(low,rx['has'][0]), max(high, rx['has'][len(rx['has'])-1])
+    
+    for rx in rxs:
+        tmp, u = rx['has'], []
+        
+        def at(x):
+            return t[of(len(t)*x//1, len(t))]
+        def of(x,most):
+            return int(max(0, min(most, x)))
+
+        def pos(x):
+            return math.floor(of(the['width']*(x-lo)/(hi-lo+1E-32)//1, the['width']))
+
+        for loop in range(1, the['width']+1):
+            u.append(" ")
+        
+        a,b,c,d,e= at(.1), at(.3), at(.5), at(.7), at(.9) 
+        A,B,C,D,E= pos(a), pos(b), pos(c), pos(d), pos(e)
+
+        for loop_i in range(A, B+1):
+            u[loop_i] = "-"
+        
+        for loop_i in range(D, E+1):
+            u[loop_i] = "-"
+        
+        u[the['width']//2] = "|" 
+        u[C] = "*"
+        x = []
+
+        for i in [a,b,c,d,e]:
+            x.append(the['Fmt'].format(i))
+        rx['show'] = ''.join(u) + str(x)
+    
+    return rxs
+
+def delta(i, other):
+    e, y, z= 1E-32, i, other
+    return abs(y.mu - z.mu) / ((e + y.sd**2/y.n + z.sd**2/z.n)**.5)
