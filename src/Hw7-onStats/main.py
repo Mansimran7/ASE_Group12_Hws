@@ -37,7 +37,7 @@ if __name__ == "__main__":
     misc.eg('sample', 'sample', sample_test)
     misc.eg('nums', 'nums', num_test7)
     misc.eg('gauss', 'gauss', gauss_test)
-    # misc.eg('bootmu', 'bootmu', bootmu_test)
+    misc.eg('bootmu', 'bootmu', bootmu_test)
     # misc.eg('basic', 'basic', basic_test)
     # misc.eg('pre', 'pre', pre_test)
     # misc.eg('five', 'five', five_test)

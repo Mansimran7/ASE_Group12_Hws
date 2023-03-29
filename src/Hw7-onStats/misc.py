@@ -479,3 +479,38 @@ def tiles(rxs):
 def delta(i, other):
     e, y, z= 1E-32, i, other
     return abs(y.mu - z.mu) / ((e + y.sd**2/y.n + z.sd**2/z.n)**.5)
+
+def bootstrap(y_val, z_val, NUM):
+    x, y, z, yhat, zhat = NUM(), NUM(), NUM(), [], []
+
+    for y1 in y_val:
+        x.add(y1)
+        y.add(y1)
+    
+    for z1 in z_val:
+        x.add(z1)
+        z.add(z1)
+    
+    xmu, ymu, zmu = x.mu, y.mu, z.mu
+
+    for y1 in y_val:
+        yhat.append(y1 - ymu + xmu)
+    for z1 in z_val:
+       zhat.append(z1 - zmu + xmu)
+    
+    tobs = delta(y,z)
+    n = 0
+
+    for loop in range(1, 1,the['bootstrap']+1):
+        val = NUM()
+        tmp = NUM()
+
+        for y in samples(yhat).values():
+            val.add(y)
+        
+        for z in samples(zhat).values():
+            tmp.add(z)
+        
+        if delta(val, tmp) > tobs:
+            n = n + 1
+    return n / the['bootstrap'] >= the['conf']
