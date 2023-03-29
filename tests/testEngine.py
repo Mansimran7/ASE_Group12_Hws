@@ -267,3 +267,116 @@ def gauss_test():
     for i in t:
         n.add(i)
     print("",n.n,n.mu,n.sd)
+def bootmu_test():
+    a, b = [], []
+    for i in range(1, 101):
+        a.append(misc.gaussian(10,1))
+    print("","mu","sd","cliffs","boot","both")
+    print("","--","--","------","----","----")
+    while mu <= 11:
+        b = []
+        for i in range(1, 101):
+            b.append(misc.gaussian(mu, 1))
+        cl = misc.cliffsDelta(a, b)
+        bs = misc.bootstrap(a, b)
+        print("",mu,1,cl,bs,cl and bs)
+        mu = mu + 0.1
+
+def basic_test():
+    print("\t\ttruee", bootstrap( {8, 7, 6, 2, 5, 8, 7, 3}, 
+                                {8, 7, 6, 2, 5, 8, 7, 3}),
+              cliffsDelta( {8, 7, 6, 2, 5, 8, 7, 3}, 
+                           {8, 7, 6, 2, 5, 8, 7, 3}))
+    print("\t\tfalse", bootstrap(  {8, 7, 6, 2, 5, 8, 7, 3},  
+                                 {9, 9, 7, 8, 10, 9, 6}),
+             cliffsDelta( {8, 7, 6, 2, 5, 8, 7, 3},  
+                          {9, 9, 7, 8, 10, 9, 6})) 
+    print("\t\tfalse", 
+                    bootstrap({0.34, 0.49, 0.51, 0.6,   .34,  .49,  .51, .6}, 
+                               {0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9}),
+                  cliffsDelta({0.34, 0.49, 0.51, 0.6,   .34,  .49,  .51, .6}, 
+                              {0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9}))
+
+def pre_test():
+    print("\neg3")
+    d = 1
+    tmp = False
+    for i in range(1, 11):
+        t1, t2 = [], []
+        for j in range(1, 33):
+            t1.append(misc.gaussian(10,1))
+            t2.append(misc.gaussian(d*10, 1))
+            if d < 1.1:
+                tmp = True
+            print("\t",d,tmp,bootstrap(t1,t2),bootstrap(t1,t1))
+            d = d + 0.05
+
+def five_test():
+    for rx in tiles(scottKnot(
+        [RX([0.34,0.49,0.51,0.6,.34,.49,.51,.6],"rx1"),
+        RX([0.6,0.7,0.8,0.9,.6,.7,.8,.9],"rx2"),
+        RX([0.15,0.25,0.4,0.35,0.15,0.25,0.4,0.35],"rx3"),
+        RX([0.6,0.7,0.8,0.9,0.6,0.7,0.8,0.9],"rx4"),
+        RX([0.1,0.2,0.3,0.4,0.1,0.2,0.3,0.4],"rx5")])):
+        print(rx['name'], rx['rank'], rx['show'])
+
+def six_test():
+    for rx in tiles(scottKnot(
+        [RX({101,100,99,101,99.5,101,100,99,101,99.5},"rx1"),
+        RX({101,100,99,101,100,101,100,99,101,100},"rx2"),
+        RX({101,100,99.5,101,99,101,100,99.5,101,99},"rx3"),
+        RX({101,100,99,101,100,101,100,99,101,100},"rx4")])):
+        print(rx['name'], rx['rank'], rx['show'])
+    
+def tiles_test():
+    rxs, a, b, c, d, e, f, g, h, j, k = [], [], [], [], [], [], [], [], [], [], []
+    for i in range(1, 1001):
+        a.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        b.append(misc.gaussian(10.1,1))
+    for i in range(1, 1001):
+        c.append(misc.gaussian(20,1))
+    for i in range(1, 1001):
+        d.append(misc.gaussian(30,1))
+    for i in range(1, 1001):
+        e.append(misc.gaussian(30.1,1))
+    for i in range(1, 1001):
+        f.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        g.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        h.append(misc.gaussian(40,1))
+    for i in range(1, 1001):
+        j.append(misc.gaussian(40,3))
+    for i in range(1, 1001):
+        k.append(misc.gaussian(10,1))
+    for k, v in ([a, b, c, d, e, f, g, h, j, k]):
+        rsx[k] = RX(v, "rx"+str(k+1))
+
+
+def sk_test():
+    rxs, a, b, c, d, e, f, g, h, j, k = [], [], [], [], [], [], [], [], [], [], []
+    for i in range(1, 1001):
+        a.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        b.append(misc.gaussian(10.1,1))
+    for i in range(1, 1001):
+        c.append(misc.gaussian(20,1))
+    for i in range(1, 1001):
+        d.append(misc.gaussian(30,1))
+    for i in range(1, 1001):
+        e.append(misc.gaussian(30.1,1))
+    for i in range(1, 1001):
+        f.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        g.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        h.append(misc.gaussian(40,1))
+    for i in range(1, 1001):
+        j.append(misc.gaussian(40,3))
+    for i in range(1, 1001):
+        k.append(misc.gaussian(10,1))
+    for k, v in ([a, b, c, d, e, f, g, h, j, k]):
+        rsx[k] = RX(v, "rx"+str(k+1))
+    for rx in tiles(scottKnot(rsx)):
+        print(rx['rank'], rx['name'], rx['show'])
