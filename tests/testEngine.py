@@ -318,15 +318,15 @@ def five_test():
         RX([0.15,0.25,0.4,0.35,0.15,0.25,0.4,0.35],"rx3"),
         RX([0.6,0.7,0.8,0.9,0.6,0.7,0.8,0.9],"rx4"),
         RX([0.1,0.2,0.3,0.4,0.1,0.2,0.3,0.4],"rx5")])):
-        print(rx["name"], rx["rank"], rx["show"])
+        print(rx['name'], rx['rank'], rx['show'])
 
 def six_test():
-    for rx in titles(scottKnot(
+    for rx in tiles(scottKnot(
         [RX({101,100,99,101,99.5,101,100,99,101,99.5},"rx1"),
         RX({101,100,99,101,100,101,100,99,101,100},"rx2"),
         RX({101,100,99.5,101,99,101,100,99.5,101,99},"rx3"),
         RX({101,100,99,101,100,101,100,99,101,100},"rx4")])):
-        print(rx["name"], rx["rank"], rx["show"])
+        print(rx['name'], rx['rank'], rx['show'])
     
 def tiles_test():
     rxs, a, b, c, d, e, f, g, h, j, k = [], [], [], [], [], [], [], [], [], [], []
@@ -354,3 +354,29 @@ def tiles_test():
         rsx[k] = RX(v, "rx"+str(k+1))
 
 
+def sk_test():
+    rxs, a, b, c, d, e, f, g, h, j, k = [], [], [], [], [], [], [], [], [], [], []
+    for i in range(1, 1001):
+        a.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        b.append(misc.gaussian(10.1,1))
+    for i in range(1, 1001):
+        c.append(misc.gaussian(20,1))
+    for i in range(1, 1001):
+        d.append(misc.gaussian(30,1))
+    for i in range(1, 1001):
+        e.append(misc.gaussian(30.1,1))
+    for i in range(1, 1001):
+        f.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        g.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        h.append(misc.gaussian(40,1))
+    for i in range(1, 1001):
+        j.append(misc.gaussian(40,3))
+    for i in range(1, 1001):
+        k.append(misc.gaussian(10,1))
+    for k, v in ([a, b, c, d, e, f, g, h, j, k]):
+        rsx[k] = RX(v, "rx"+str(k+1))
+    for rx in tiles(scottKnot(rsx)):
+        print(rx['rank'], rx['name'], rx['show'])
