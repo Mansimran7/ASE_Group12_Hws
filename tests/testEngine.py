@@ -297,3 +297,17 @@ def basic_test():
                   cliffsDelta({0.34, 0.49, 0.51, 0.6,   .34,  .49,  .51, .6}, 
                               {0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9}))
 
+def pre_test():
+    print("\neg3")
+    d = 1
+    tmp = False
+    for i in range(1, 11):
+        t1, t2 = {}, {}
+        for j in range(1, 33):
+            t1.append(misc.gaussian(10,1))
+            t2.append(misc.gaussian(d*10, 1))
+            if d < 1.1:
+                tmp = True
+            print("\t",d,tmp,bootstrap(t1,t2),bootstrap(t1,t1))
+            d = d + 0.05
+        
