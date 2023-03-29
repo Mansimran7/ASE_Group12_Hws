@@ -267,3 +267,17 @@ def gauss_test():
     for i in t:
         n.add(i)
     print("",n.n,n.mu,n.sd)
+def bootmu_test():
+    a, b = {}, {}
+    for i in range(1, 101):
+        a.append(misc.gaussian(10,1))
+    print("","mu","sd","cliffs","boot","both")
+    print("","--","--","------","----","----")
+    while mu <= 11:
+        b = {}
+        for i in range(1, 101):
+            b.append(misc.gaussian(mu, 1))
+        cl = misc.cliffsDelta(a, b)
+        bs = misc.bootstrap(a, b)
+        print("",mu,1,cl,bs,cl and bs)
+        mu = mu + 0.1
