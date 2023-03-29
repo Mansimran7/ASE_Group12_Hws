@@ -380,3 +380,57 @@ def mid(temp):
 def div(temp):
     t= temp['has'] if temp['has'] else temp
     return (t[len(t)*(9//10)] - t[len(t)*(1//10)])/2.56
+
+
+def scottKnot(rxs, NUM):
+
+    def merges(i, j):
+        output = RX([], rxs[i]['name'])
+        for loop in range(i, j+1):
+            output = merge(output, rxs[j])
+        
+        return output
+
+    def same(low, cut, high):
+        lower_value = merges(low, cut)
+        higher_value = merges(cut+1, high)
+
+        return cliffsDelta (lower_value['has'], higher_value['has']) and bootstrap(lower_value['has'], higher_value['has'])
+
+    def recurse(low, high, rank):
+        before = merges(low, high)
+        best_val = 0
+        cut = None
+
+        for loop in range(low, high+1):
+            if loop < high:
+                lower_value = merges(low, loop)
+                higher_value = merges(loop+1, high)
+
+                now = (lower_value['n']*(mid(lower_value) - mid(before))**2 + higher_value['n']*(mid(higher_value) - mid(before))**2) / (lower_value['n'] + higher_value['n'])
+
+                if now > best_val:
+                    if abs(mid(lower_value) - mid(higher_value)) >= cohen :
+                        cut, best_val = loop, now
+        
+        if cut != None and not same(low, cut, high):
+            rank = recurse(low, cut, rank) + 1
+            rank = recurse(cut+1, high, rank)
+        else:
+            for i in range(low, high+1):
+                rxs[i]['rank'] = rank
+        return rank
+    
+    rxs = rxs_sort(rxs)
+    cohen = div(merge(0, len(rxs)-1)) * the['cohen']
+    recurse(0, len(rxs)-1, 1)
+
+    return rxs
+
+
+def rxs_sort(rxs):
+    for loop_i, x in enumerate(rxs):
+        for loop_j, y in enumerate(rxs):
+            if mid(x) < mid(y):
+                rxs[j],rxs[i]=rxs[i],rxs[j]
+    return rxs
