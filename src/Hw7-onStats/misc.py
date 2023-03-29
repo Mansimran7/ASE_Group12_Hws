@@ -363,3 +363,20 @@ def gaussian(mu, sd):
     mu, sd = mu or 0, sd or 1
     sq, pi, log, cos, r = math.sqrt, math.pi, math.log, math.cos, random.random
     return mu + sd * sq(-2 * log(r())) * cos(2 * pi * r())
+
+def RX(tmp, s):
+    t = sorted(tmp)
+
+    return {'name': s or "", 'rank' : 0, 'n': len(t), 'show': "", 'has': t}
+
+def mid(temp):
+    t = temp['has'] if temp['has'] else temp
+    n = len(t)//2
+    if len(t)%2==0:
+        return (t[n] +t[n+1])/2
+    else:
+        t[n+1]
+
+def div(temp):
+    t= temp['has'] if temp['has'] else temp
+    return (t[len(t)*(9//10)] - t[len(t)*(1//10)])/2.56
