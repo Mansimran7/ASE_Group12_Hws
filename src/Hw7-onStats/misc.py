@@ -380,3 +380,102 @@ def mid(temp):
 def div(temp):
     t= temp['has'] if temp['has'] else temp
     return (t[len(t)*(9//10)] - t[len(t)*(1//10)])/2.56
+
+
+def scottKnot(rxs, NUM):
+
+    def merges(i, j):
+        output = RX([], rxs[i]['name'])
+        for loop in range(i, j+1):
+            output = merge(output, rxs[j])
+        
+        return output
+
+    def same(low, cut, high):
+        lower_value = merges(low, cut)
+        higher_value = merges(cut+1, high)
+
+        return cliffsDelta (lower_value['has'], higher_value['has']) and bootstrap(lower_value['has'], higher_value['has'])
+
+    def recurse(low, high, rank):
+        before = merges(low, high)
+        best_val = 0
+        cut = None
+
+        for loop in range(low, high+1):
+            if loop < high:
+                lower_value = merges(low, loop)
+                higher_value = merges(loop+1, high)
+
+                now = (lower_value['n']*(mid(lower_value) - mid(before))**2 + higher_value['n']*(mid(higher_value) - mid(before))**2) / (lower_value['n'] + higher_value['n'])
+
+                if now > best_val:
+                    if abs(mid(lower_value) - mid(higher_value)) >= cohen :
+                        cut, best_val = loop, now
+        
+        if cut != None and not same(low, cut, high):
+            rank = recurse(low, cut, rank) + 1
+            rank = recurse(cut+1, high, rank)
+        else:
+            for i in range(low, high+1):
+                rxs[i]['rank'] = rank
+        return rank
+    
+    rxs = rxs_sort(rxs)
+    cohen = div(merge(0, len(rxs)-1)) * the['cohen']
+    recurse(0, len(rxs)-1, 1)
+
+    return rxs
+
+
+def rxs_sort(rxs):
+    for loop_i, x in enumerate(rxs):
+        for loop_j, y in enumerate(rxs):
+            if mid(x) < mid(y):
+                rxs[j],rxs[i]=rxs[i],rxs[j]
+    return rxs
+
+def tiles(rxs):
+
+    inf = float('inf')
+    low, high = inf, float('-inf')
+
+    for rx in rxs:
+        low, high = min(low,rx['has'][0]), max(high, rx['has'][len(rx['has'])-1])
+    
+    for rx in rxs:
+        tmp, u = rx['has'], []
+        
+        def at(x):
+            return t[of(len(t)*x//1, len(t))]
+        def of(x,most):
+            return int(max(0, min(most, x)))
+
+        def pos(x):
+            return math.floor(of(the['width']*(x-lo)/(hi-lo+1E-32)//1, the['width']))
+
+        for loop in range(1, the['width']+1):
+            u.append(" ")
+        
+        a,b,c,d,e= at(.1), at(.3), at(.5), at(.7), at(.9) 
+        A,B,C,D,E= pos(a), pos(b), pos(c), pos(d), pos(e)
+
+        for loop_i in range(A, B+1):
+            u[loop_i] = "-"
+        
+        for loop_i in range(D, E+1):
+            u[loop_i] = "-"
+        
+        u[the['width']//2] = "|" 
+        u[C] = "*"
+        x = []
+
+        for i in [a,b,c,d,e]:
+            x.append(the['Fmt'].format(i))
+        rx['show'] = ''.join(u) + str(x)
+    
+    return rxs
+
+def delta(i, other):
+    e, y, z= 1E-32, i, other
+    return abs(y.mu - z.mu) / ((e + y.sd**2/y.n + z.sd**2/z.n)**.5)
