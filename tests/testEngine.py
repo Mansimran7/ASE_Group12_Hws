@@ -268,13 +268,13 @@ def gauss_test():
         n.add(i)
     print("",n.n,n.mu,n.sd)
 def bootmu_test():
-    a, b = {}, {}
+    a, b = [], []
     for i in range(1, 101):
         a.append(misc.gaussian(10,1))
     print("","mu","sd","cliffs","boot","both")
     print("","--","--","------","----","----")
     while mu <= 11:
-        b = {}
+        b = []
         for i in range(1, 101):
             b.append(misc.gaussian(mu, 1))
         cl = misc.cliffsDelta(a, b)
@@ -302,7 +302,7 @@ def pre_test():
     d = 1
     tmp = False
     for i in range(1, 11):
-        t1, t2 = {}, {}
+        t1, t2 = [], []
         for j in range(1, 33):
             t1.append(misc.gaussian(10,1))
             t2.append(misc.gaussian(d*10, 1))
@@ -328,3 +328,29 @@ def six_test():
         RX({101,100,99,101,100,101,100,99,101,100},"rx4")])):
         print(rx["name"], rx["rank"], rx["show"])
     
+def tiles_test():
+    rxs, a, b, c, d, e, f, g, h, j, k = [], [], [], [], [], [], [], [], [], [], []
+    for i in range(1, 1001):
+        a.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        b.append(misc.gaussian(10.1,1))
+    for i in range(1, 1001):
+        c.append(misc.gaussian(20,1))
+    for i in range(1, 1001):
+        d.append(misc.gaussian(30,1))
+    for i in range(1, 1001):
+        e.append(misc.gaussian(30.1,1))
+    for i in range(1, 1001):
+        f.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        g.append(misc.gaussian(10,1))
+    for i in range(1, 1001):
+        h.append(misc.gaussian(40,1))
+    for i in range(1, 1001):
+        j.append(misc.gaussian(40,3))
+    for i in range(1, 1001):
+        k.append(misc.gaussian(10,1))
+    for k, v in ([a, b, c, d, e, f, g, h, j, k]):
+        rsx[k] = RX(v, "rx"+str(k+1))
+
+
