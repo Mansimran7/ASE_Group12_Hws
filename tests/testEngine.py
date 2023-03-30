@@ -7,7 +7,7 @@ from sym_class import Sym
 from utils import *
 from misc import *
 import math
-
+import numpy as np
 
 def sym_test():
     """
@@ -267,33 +267,32 @@ def gauss_test():
     for i in t:
         n.add(i)
     print("",n.n,n.mu,n.sd)
+
 def bootmu_test():
     a, b = [], []
     for i in range(1, 101):
         a.append(misc.gaussian(10,1))
     print("","mu","sd","cliffs","boot","both")
     print("","--","--","------","----","----")
-    while mu <= 11:
-        b = []
-        for i in range(1, 101):
-            b.append(misc.gaussian(mu, 1))
-        cl = misc.cliffsDelta(a, b)
-        bs = misc.bootstrap(a, b)
+    for mu in np.linspace(10,11,11):
+        b=[]
+        for i in range(1,100+1):
+            b.append(gaussian(mu,1))
+        cl=cliffsDelta(a,b)
+        bs=bootstrap(a,b, Num)
         print("",mu,1,cl,bs,cl and bs)
-        mu = mu + 0.1
-
 def basic_test():
     print("\t\ttruee", bootstrap( {8, 7, 6, 2, 5, 8, 7, 3}, 
-                                {8, 7, 6, 2, 5, 8, 7, 3}),
+                                {8, 7, 6, 2, 5, 8, 7, 3}, Num),
               cliffsDelta( {8, 7, 6, 2, 5, 8, 7, 3}, 
                            {8, 7, 6, 2, 5, 8, 7, 3}))
     print("\t\tfalse", bootstrap(  {8, 7, 6, 2, 5, 8, 7, 3},  
-                                 {9, 9, 7, 8, 10, 9, 6}),
+                                 {9, 9, 7, 8, 10, 9, 6}, Num),
              cliffsDelta( {8, 7, 6, 2, 5, 8, 7, 3},  
                           {9, 9, 7, 8, 10, 9, 6})) 
     print("\t\tfalse", 
                     bootstrap({0.34, 0.49, 0.51, 0.6,   .34,  .49,  .51, .6}, 
-                               {0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9}),
+                               {0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9}, Num),
                   cliffsDelta({0.34, 0.49, 0.51, 0.6,   .34,  .49,  .51, .6}, 
                               {0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9}))
 
@@ -308,7 +307,7 @@ def pre_test():
             t2.append(misc.gaussian(d*10, 1))
             if d < 1.1:
                 tmp = True
-            print("\t",d,tmp,bootstrap(t1,t2),bootstrap(t1,t1))
+            print("\t",d,tmp,bootstrap(t1,t2, Num),bootstrap(t1,t1, Num))
             d = d + 0.05
 
 def five_test():
@@ -317,7 +316,7 @@ def five_test():
         RX([0.6,0.7,0.8,0.9,.6,.7,.8,.9],"rx2"),
         RX([0.15,0.25,0.4,0.35,0.15,0.25,0.4,0.35],"rx3"),
         RX([0.6,0.7,0.8,0.9,0.6,0.7,0.8,0.9],"rx4"),
-        RX([0.1,0.2,0.3,0.4,0.1,0.2,0.3,0.4],"rx5")])):
+        RX([0.1,0.2,0.3,0.4,0.1,0.2,0.3,0.4],"rx5")], Num)):
         print(rx['name'], rx['rank'], rx['show'])
 
 def six_test():
@@ -325,7 +324,7 @@ def six_test():
         [RX({101,100,99,101,99.5,101,100,99,101,99.5},"rx1"),
         RX({101,100,99,101,100,101,100,99,101,100},"rx2"),
         RX({101,100,99.5,101,99,101,100,99.5,101,99},"rx3"),
-        RX({101,100,99,101,100,101,100,99,101,100},"rx4")])):
+        RX({101,100,99,101,100,101,100,99,101,100},"rx4")], Num)):
         print(rx['name'], rx['rank'], rx['show'])
     
 def tiles_test():
@@ -350,8 +349,13 @@ def tiles_test():
         j.append(misc.gaussian(40,3))
     for i in range(1, 1001):
         k.append(misc.gaussian(10,1))
-    for k, v in ([a, b, c, d, e, f, g, h, j, k]):
-        rsx[k] = RX(v, "rx"+str(k+1))
+    for k, v in enumerate([a, b, c, d, e, f, g, h, j, k]):
+        rxs.append(RX(v, "rx"+str(k+1)))
+    
+    rxs = misc.rxs_sort(rxs)
+
+    for rx in tiles(rxs):
+        print("", rx['name'], rx['show'])
 
 
 def sk_test():
@@ -376,7 +380,7 @@ def sk_test():
         j.append(misc.gaussian(40,3))
     for i in range(1, 1001):
         k.append(misc.gaussian(10,1))
-    for k, v in ([a, b, c, d, e, f, g, h, j, k]):
-        rsx[k] = RX(v, "rx"+str(k+1))
-    for rx in tiles(scottKnot(rsx)):
+    for k, v in enumerate([a, b, c, d, e, f, g, h, j, k]):
+        rxs.append(RX(v, "rx"+str(k+1)))
+    for rx in tiles(misc.scottKnot(rxs, Num)):
         print(rx['rank'], rx['name'], rx['show'])

@@ -1,121 +1,400 @@
-▶️  the ------------------------------------------------------------
-{'dump': False, 'go': 'all', 'seed': 937162211, 'bins': 16, 'cliffs': 0.147, 'd': 0.35, 'file': '../../etc/data/auto93.csv', 'Far': 0.95, 'help': False, 'Halves': 512, 'min': 0.5, 'Max': 512, 'p': 2, 'rest': 4, 'Reuse': True}
-✅ pass:         the
-▶️  rand ------------------------------------------------------------
-✅ pass:         rand
-▶️  some ------------------------------------------------------------
-{1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 11: 11, 12: 12, 13: 13, 14: 14, 15: 15, 16: 16, 17: 17, 18: 18, 19: 19, 20: 20, 21: 21, 22: 22, 23: 23, 24: 24, 25: 25, 26: 26, 27: 27, 28: 28, 29: 29, 30: 30, 31: 31, 32: 32}
-✅ pass:         some
+▶️  ok ------------------------------------------------------------
+✅ pass:  ok
+▶️  sample ------------------------------------------------------------
+ beaca
+ ddddb
+ adadd
+ eadcb
+ eacaa
+ aeadb
+ daebd
+ debcb
+ bdcad
+ eabca
+✅ pass:  sample
 ▶️  nums ------------------------------------------------------------
-1 0.5 0.3
-2 0.3 0.3
-✅ pass:         nums
-▶️  sym ------------------------------------------------------------
-a 1.3787834934861756
-✅ pass:         sym
-▶️  csv ------------------------------------------------------------
-✅ pass:         csv
-▶️  data ------------------------------------------------------------
-68 455 193.42587939698493 104.269838171196
-{'Lbs-': 2970.42, 'Acc+': 15.57, 'Mpg+': 23.84}
-✅ pass:         data
-▶️  clone ------------------------------------------------------------
-{'Lbs-': 2970.42, 'Acc+': 15.57, 'Mpg+': 23.84}
-{'Lbs-': 2970.42, 'Acc+': 15.57, 'Mpg+': 23.84}
-✅ pass:         clone
-▶️  cliffs ------------------------------------------------------------
-> 1.0 False
-> 1.025 False
-> 1.051 False
-> 1.077 False
-> 1.104 False
-> 1.131 False
-> 1.16 False
-> 1.189 False
-> 1.218 True
-✅ pass:         cliffs
-▶️  dist ------------------------------------------------------------
-{'lo': 0.0, 'hi': 0.9022161422721422, 'mid': 0.52, 'div': 0.26}
-✅ pass:         dist
-▶️  tree ------------------------------------------------------------
-[398]  {'Lbs-': 2970.4, 'Acc+': 15.6, 'Mpg+': 23.8}
-|.. [199]
-|.. |.. [99]
-|.. |.. |.. [49]
-|.. |.. |.. |.. [24]  {'Lbs-': 3418.8, 'Acc+': 17.5, 'Mpg+': 20.0}
-|.. |.. |.. |.. [25]  {'Lbs-': 3242.3, 'Acc+': 16.7, 'Mpg+': 20.0}
-|.. |.. |.. [50]
-|.. |.. |.. |.. [25]  {'Lbs-': 3455.5, 'Acc+': 14.7, 'Mpg+': 18.8}
-|.. |.. |.. |.. [25]  {'Lbs-': 3841.4, 'Acc+': 14.0, 'Mpg+': 18.0}
-|.. |.. [100]
-|.. |.. |.. [50]
-|.. |.. |.. |.. [25]  {'Lbs-': 3005.7, 'Acc+': 15.9, 'Mpg+': 26.0}
-|.. |.. |.. |.. [25]  {'Lbs-': 2767.4, 'Acc+': 15.7, 'Mpg+': 26.4}
-|.. |.. |.. [50]
-|.. |.. |.. |.. [25]  {'Lbs-': 3301.2, 'Acc+': 14.6, 'Mpg+': 16.8}
-|.. |.. |.. |.. [25]  {'Lbs-': 4297.4, 'Acc+': 12.7, 'Mpg+': 12.4}
-|.. [199]
-|.. |.. [99]
-|.. |.. |.. [49]
-|.. |.. |.. |.. [24]  {'Lbs-': 2173.3, 'Acc+': 16.6, 'Mpg+': 31.3}
-|.. |.. |.. |.. [25]  {'Lbs-': 2218.9, 'Acc+': 16.2, 'Mpg+': 32.0}
-|.. |.. |.. [50]
-|.. |.. |.. |.. [25]  {'Lbs-': 2162.7, 'Acc+': 16.3, 'Mpg+': 28.0}
-|.. |.. |.. |.. [25]  {'Lbs-': 2417.2, 'Acc+': 15.6, 'Mpg+': 29.6}
-|.. |.. [100]
-|.. |.. |.. [50]
-|.. |.. |.. |.. [25]  {'Lbs-': 2428.4, 'Acc+': 17.1, 'Mpg+': 30.4}
-|.. |.. |.. |.. [25]  {'Lbs-': 2502.1, 'Acc+': 16.8, 'Mpg+': 25.2}
-|.. |.. |.. [50]
-|.. |.. |.. |.. [25]  {'Lbs-': 2314.6, 'Acc+': 16.7, 'Mpg+': 30.8}
-|.. |.. |.. |.. [25]  {'Lbs-': 3965.8, 'Acc+': 12.0, 'Mpg+': 16.0}
-✅ pass:         tree
-▶️  sway ------------------------------------------------------------
+ 10 5.5 3.0276503540974917
+✅ pass:  nums
+▶️  gauss ------------------------------------------------------------
+ 10000 10.013090245127714 1.9708063718547493
+✅ pass:  gauss
+▶️  bootmu ------------------------------------------------------------
+ mu sd cliffs boot both
+ -- -- ------ ---- ----
+ 10.0 1 False False False
+ 10.1 1 False False False
+ 10.2 1 False False False
+ 10.3 1 True False False
+ 10.4 1 True False False
+ 10.5 1 True False False
+ 10.6 1 True False False
+ 10.7 1 True False False
+ 10.8 1 True False False
+ 10.9 1 True False False
+ 11.0 1 True False False
+✅ pass:  bootmu
+▶️  basic ------------------------------------------------------------
+                truee False False
+                false False True
+                false False True
+✅ pass:  basic
+▶️  pre ------------------------------------------------------------
 
-all  {'Lbs-': 2970.42, 'Acc+': 15.57, 'Mpg+': 23.84}
-     {'Lbs-': 846.84, 'Acc+': 2.76, 'Mpg+': 8.34}
-
-best {'Lbs-': 2355.67, 'Acc+': 15.63, 'Mpg+': 30.0}
-     {'Lbs-': 464.34, 'Acc+': 2.88, 'Mpg+': 6.03}
-
-rest {'Lbs-': 3155.62, 'Acc+': 15.67, 'Mpg+': 22.29}
-     {'Lbs-': 921.69, 'Acc+': 2.49, 'Mpg+': 8.31}
-✅ pass:         sway
-▶️  bins ------------------------------------------------------------
-all    {'best': 12, 'rest': 48}
-
-Clndrs -inf 4 0.585 {'best': 11, 'rest': 25}
-Clndrs 4 5 0.083 {'best': 1}
-Clndrs 5 inf 0.0 {'rest': 11}
-
-Volume -inf 163 0.441 {'best': 7, 'rest': 9}
-Volume 163 183 0.083 {'best': 1}
-Volume 183 inf 0.0 {'rest': 4}
-
-Model -inf 81 0.033 {'rest': 6, 'best': 1}
-Model 81 inf 0.0 {'rest': 2}
-
-origin 1 1 0.0 {'rest': 28}
-origin 2 2 0.857 {'best': 12, 'rest': 8}
-origin 3 3 0.0 {'rest': 12}
-✅ pass:         bins
-▶️  xpln ------------------------------------------------------------
-
-Clndrs -inf 6
-Clndrs 6 inf
-
-Volume -inf 156
-Volume 156 inf
-{'Model': [[-inf, 81]]}
-{'Model': [[-inf, 81]], 'Volume': [[-inf, 156]]}
-{'Model': [[-inf, 81]], 'Volume': [[-inf, 156]], 'Clndrs': [[-inf, 6]]}
-{'Model': [[-inf, 81]], 'Volume': [[-inf, 156]], 'Clndrs': [[-inf, 6]], 'origin': [3]}
-
------------
-explain= {'Model': [[-inf, 81]]}
-all                {'Lbs-': 2970.42, 'Acc+': 15.57, 'Mpg+': 23.84} {'Lbs-': 846.84, 'Acc+': 2.76, 'Mpg+': 8.34}
-sway with 6 evals {'Lbs-': 2286.0, 'Acc+': 16.15, 'Mpg+': 33.08} {'Lbs-': 357.01, 'Acc+': 1.88, 'Mpg+': 9.47}
-xpln on 6 evals {'Lbs-': 3056.22, 'Acc+': 15.41, 'Mpg+': 22.51} {'Lbs-': 872.24, 'Acc+': 2.8, 'Mpg+': 7.96}
-sort with 398 evals {'Lbs-': 4679.0, 'Acc+': 12.58, 'Mpg+': 10.0} {'Lbs-': 287.17, 'Acc+': 2.02, 'Mpg+': 0.0}
-✅ pass:         xpln
-🔆 {'pass': 14, 'fail': 0, 'success': 100.0}
+eg3
+         1 True False False
+         1.05 True False False
+         1.1 True False False
+         1.1500000000000001 True False False
+         1.2000000000000002 True False False
+         1.2500000000000002 True False False
+         1.3000000000000003 True False False
+         1.3500000000000003 True False False
+         1.4000000000000004 True False False
+         1.4500000000000004 True False False
+         1.5000000000000004 True False False
+         1.5500000000000005 True False False
+         1.6000000000000005 True False False
+         1.6500000000000006 True False False
+         1.7000000000000006 True False False
+         1.7500000000000007 True False False
+         1.8000000000000007 True False False
+         1.8500000000000008 True False False
+         1.9000000000000008 True False False
+         1.9500000000000008 True False False
+         2.000000000000001 True False False
+         2.0500000000000007 True False False
+         2.1000000000000005 True False False
+         2.1500000000000004 True False False
+         2.2 True False False
+         2.25 True False False
+         2.3 True False False
+         2.3499999999999996 True False False
+         2.3999999999999995 True False False
+         2.4499999999999993 True False False
+         2.499999999999999 True False False
+         2.549999999999999 True False False
+         2.5999999999999988 True False False
+         2.6499999999999986 True False False
+         2.6999999999999984 True False False
+         2.7499999999999982 True False False
+         2.799999999999998 True False False
+         2.849999999999998 True False False
+         2.8999999999999977 True False False
+         2.9499999999999975 True False False
+         2.9999999999999973 True False False
+         3.049999999999997 True False False
+         3.099999999999997 True False False
+         3.149999999999997 True False False
+         3.1999999999999966 True False False
+         3.2499999999999964 True False False
+         3.2999999999999963 True False False
+         3.349999999999996 True False False
+         3.399999999999996 True False False
+         3.4499999999999957 True False False
+         3.4999999999999956 True False False
+         3.5499999999999954 True False False
+         3.599999999999995 True False False
+         3.649999999999995 True False False
+         3.699999999999995 True False False
+         3.7499999999999947 True False False
+         3.7999999999999945 True False False
+         3.8499999999999943 True False False
+         3.899999999999994 True False False
+         3.949999999999994 True False False
+         3.999999999999994 True False False
+         4.049999999999994 True False False
+         4.099999999999993 True False False
+         4.149999999999993 True False False
+         4.199999999999993 True False False
+         4.249999999999993 True False False
+         4.299999999999993 True False False
+         4.3499999999999925 True False False
+         4.399999999999992 True False False
+         4.449999999999992 True False False
+         4.499999999999992 True False False
+         4.549999999999992 True False False
+         4.599999999999992 True False False
+         4.6499999999999915 True False False
+         4.699999999999991 True False False
+         4.749999999999991 True False False
+         4.799999999999991 True False False
+         4.849999999999991 True False False
+         4.899999999999991 True False False
+         4.94999999999999 True False False
+         4.99999999999999 True False False
+         5.04999999999999 True False False
+         5.09999999999999 True False False
+         5.14999999999999 True False False
+         5.1999999999999895 True False False
+         5.249999999999989 True False False
+         5.299999999999989 True False False
+         5.349999999999989 True False False
+         5.399999999999989 True False False
+         5.449999999999989 True False False
+         5.4999999999999885 True False False
+         5.549999999999988 True False False
+         5.599999999999988 True False False
+         5.649999999999988 True False False
+         5.699999999999988 True False False
+         5.749999999999988 True False False
+         5.799999999999987 True False False
+         5.849999999999987 True False False
+         5.899999999999987 True False False
+         5.949999999999987 True False False
+         5.999999999999987 True False False
+         6.0499999999999865 True False False
+         6.099999999999986 True False False
+         6.149999999999986 True False False
+         6.199999999999986 True False False
+         6.249999999999986 True False False
+         6.299999999999986 True False False
+         6.349999999999985 True False False
+         6.399999999999985 True False False
+         6.449999999999985 True False False
+         6.499999999999985 True False False
+         6.549999999999985 True False False
+         6.5999999999999845 True False False
+         6.649999999999984 True False False
+         6.699999999999984 True False False
+         6.749999999999984 True False False
+         6.799999999999984 True False False
+         6.849999999999984 True False False
+         6.8999999999999835 True False False
+         6.949999999999983 True False False
+         6.999999999999983 True False False
+         7.049999999999983 True False False
+         7.099999999999983 True False False
+         7.149999999999983 True False False
+         7.199999999999982 True False False
+         7.249999999999982 True False False
+         7.299999999999982 True False False
+         7.349999999999982 True False False
+         7.399999999999982 True False False
+         7.4499999999999815 True False False
+         7.499999999999981 True False False
+         7.549999999999981 True False False
+         7.599999999999981 True False False
+         7.649999999999981 True False False
+         7.699999999999981 True False False
+         7.7499999999999805 True False False
+         7.79999999999998 True False False
+         7.84999999999998 True False False
+         7.89999999999998 True False False
+         7.94999999999998 True False False
+         7.99999999999998 True False False
+         8.04999999999998 True False False
+         8.09999999999998 True False False
+         8.14999999999998 True False False
+         8.199999999999982 True False False
+         8.249999999999982 True False False
+         8.299999999999983 True False False
+         8.349999999999984 True False False
+         8.399999999999984 True False False
+         8.449999999999985 True False False
+         8.499999999999986 True False False
+         8.549999999999986 True False False
+         8.599999999999987 True False False
+         8.649999999999988 True False False
+         8.699999999999989 True False False
+         8.74999999999999 True False False
+         8.79999999999999 True False False
+         8.84999999999999 True False False
+         8.899999999999991 True False False
+         8.949999999999992 True False False
+         8.999999999999993 True False False
+         9.049999999999994 True False False
+         9.099999999999994 True False False
+         9.149999999999995 True False False
+         9.199999999999996 True False False
+         9.249999999999996 True False False
+         9.299999999999997 True False False
+         9.349999999999998 True False False
+         9.399999999999999 True False False
+         9.45 True False False
+         9.5 True False False
+         9.55 True False False
+         9.600000000000001 True False False
+         9.650000000000002 True False False
+         9.700000000000003 True False False
+         9.750000000000004 True False False
+         9.800000000000004 True False False
+         9.850000000000005 True False False
+         9.900000000000006 True False False
+         9.950000000000006 True False False
+         10.000000000000007 True False False
+         10.050000000000008 True False False
+         10.100000000000009 True False False
+         10.15000000000001 True False False
+         10.20000000000001 True False False
+         10.25000000000001 True False False
+         10.300000000000011 True False False
+         10.350000000000012 True False False
+         10.400000000000013 True False False
+         10.450000000000014 True False False
+         10.500000000000014 True False False
+         10.550000000000015 True False False
+         10.600000000000016 True False False
+         10.650000000000016 True False False
+         10.700000000000017 True False False
+         10.750000000000018 True False False
+         10.800000000000018 True False False
+         10.85000000000002 True False False
+         10.90000000000002 True False False
+         10.95000000000002 True False False
+         11.000000000000021 True False False
+         11.050000000000022 True False False
+         11.100000000000023 True False False
+         11.150000000000023 True False False
+         11.200000000000024 True False False
+         11.250000000000025 True False False
+         11.300000000000026 True False False
+         11.350000000000026 True False False
+         11.400000000000027 True False False
+         11.450000000000028 True False False
+         11.500000000000028 True False False
+         11.55000000000003 True False False
+         11.60000000000003 True False False
+         11.65000000000003 True False False
+         11.700000000000031 True False False
+         11.750000000000032 True False False
+         11.800000000000033 True False False
+         11.850000000000033 True False False
+         11.900000000000034 True False False
+         11.950000000000035 True False False
+         12.000000000000036 True False False
+         12.050000000000036 True False False
+         12.100000000000037 True False False
+         12.150000000000038 True False False
+         12.200000000000038 True False False
+         12.250000000000039 True False False
+         12.30000000000004 True False False
+         12.35000000000004 True False False
+         12.400000000000041 True False False
+         12.450000000000042 True False False
+         12.500000000000043 True False False
+         12.550000000000043 True False False
+         12.600000000000044 True False False
+         12.650000000000045 True False False
+         12.700000000000045 True False False
+         12.750000000000046 True False False
+         12.800000000000047 True False False
+         12.850000000000048 True False False
+         12.900000000000048 True False False
+         12.950000000000049 True False False
+         13.00000000000005 True False False
+         13.05000000000005 True False False
+         13.100000000000051 True False False
+         13.150000000000052 True False False
+         13.200000000000053 True False False
+         13.250000000000053 True False False
+         13.300000000000054 True False False
+         13.350000000000055 True False False
+         13.400000000000055 True False False
+         13.450000000000056 True False False
+         13.500000000000057 True False False
+         13.550000000000058 True False False
+         13.600000000000058 True False False
+         13.650000000000059 True False False
+         13.70000000000006 True False False
+         13.75000000000006 True False False
+         13.800000000000061 True False False
+         13.850000000000062 True False False
+         13.900000000000063 True False False
+         13.950000000000063 True False False
+         14.000000000000064 True False False
+         14.050000000000065 True False False
+         14.100000000000065 True False False
+         14.150000000000066 True False False
+         14.200000000000067 True False False
+         14.250000000000068 True False False
+         14.300000000000068 True False False
+         14.350000000000069 True False False
+         14.40000000000007 True False False
+         14.45000000000007 True False False
+         14.500000000000071 True False False
+         14.550000000000072 True False False
+         14.600000000000072 True False False
+         14.650000000000073 True False False
+         14.700000000000074 True False False
+         14.750000000000075 True False False
+         14.800000000000075 True False False
+         14.850000000000076 True False False
+         14.900000000000077 True False False
+         14.950000000000077 True False False
+         15.000000000000078 True False False
+         15.050000000000079 True False False
+         15.10000000000008 True False False
+         15.15000000000008 True False False
+         15.200000000000081 True False False
+         15.250000000000082 True False False
+         15.300000000000082 True False False
+         15.350000000000083 True False False
+         15.400000000000084 True False False
+         15.450000000000085 True False False
+         15.500000000000085 True False False
+         15.550000000000086 True False False
+         15.600000000000087 True False False
+         15.650000000000087 True False False
+         15.700000000000088 True False False
+         15.750000000000089 True False False
+         15.80000000000009 True False False
+         15.85000000000009 True False False
+         15.900000000000091 True False False
+         15.950000000000092 True False False
+         16.000000000000092 True False False
+         16.050000000000093 True False False
+         16.100000000000094 True False False
+         16.150000000000095 True False False
+         16.200000000000095 True False False
+         16.250000000000096 True False False
+         16.300000000000097 True False False
+         16.350000000000097 True False False
+         16.400000000000098 True False False
+         16.4500000000001 True False False
+         16.5000000000001 True False False
+         16.5500000000001 True False False
+         16.6000000000001 True False False
+         16.6500000000001 True False False
+         16.700000000000102 True False False
+         16.750000000000103 True False False
+         16.800000000000104 True False False
+         16.850000000000104 True False False
+         16.900000000000105 True False False
+         16.950000000000106 True False False
+✅ pass:  pre
+▶️  five ------------------------------------------------------------
+rx5 1          *          |                   -------------['0.10', '0.20', '0.30', '0.30', '0.40']
+rx3 2             *       |                   ----------['0.15', '0.25', '0.35', '0.35', '0.40']
+rx1 3                     *                   --------------['0.34', '0.49', '0.51', '0.51', '0.60']
+rx4 4                     |              *    ------------['0.60', '0.70', '0.80', '0.80', '0.90']
+rx2 4                     |              *    ------------['0.60', '0.70', '0.80', '0.80', '0.90']
+✅ pass:  five
+▶️  six ------------------------------------------------------------
+rx1 1                     *                   --------------------------------['99.00', '99.50', '100.00', '100.00', '101.00']rx3 2                     *                   --------------------------------['99.00', '99.50', '100.00', '100.00', '101.00']rx4 3                     *                   --['99.00', '99.00', '100.00', '101.00', '101.00']
+rx2 4                     *                   --['99.00', '99.00', '100.00', '101.00', '101.00']
+✅ pass:  six
+▶️  tiles ------------------------------------------------------------
+ rx10    *                |                   ---['8.74', '9.49', '9.95', '10.51', '11.33']
+ rx6    *                |                   ---['8.76', '9.48', '9.95', '10.51', '11.34']
+ rx1    *                |                   ---['8.64', '9.48', '9.99', '10.55', '11.41']
+ rx2    *                |                   ---['8.90', '9.65', '10.13', '10.62', '11.32']
+ rx3             *       |                   ---['18.76', '19.50', '20.03', '20.57', '21.37']
+ rx9                     |         *         ------['36.15', '38.28', '39.98', '41.61', '43.67']
+ rx7    *                |                   ---['8.78', '9.45', '10.01', '10.56', '11.36']
+ rx5                     |*                  ---['28.77', '29.55', '30.10', '30.66', '31.36']
+ rx4                     |*                  ---['28.88', '29.51', '30.05', '30.54', '31.32']
+ rx8                     |         *         ---['38.77', '39.52', '40.05', '40.53', '41.37']
+✅ pass:  tiles
+▶️  sk ------------------------------------------------------------
+1 rx1   *                 |                   ----['8.67', '9.45', '9.98', '10.51', '11.31']
+2 rx10   *                 |                   ----['8.68', '9.46', '9.99', '10.57', '11.34']
+3 rx7   *                 |                   ----['8.66', '9.51', '10.00', '10.53', '11.22']
+4 rx6   *                 |                   ----['8.71', '9.50', '10.09', '10.59', '11.32']
+5 rx2   *                 |                   ----['8.83', '9.57', '10.10', '10.64', '11.41']
+6 rx3             *       |                   ---['18.70', '19.44', '19.96', '20.46', '21.29']
+7 rx8                     |          *        ---['38.72', '39.50', '40.02', '40.55', '41.26']
+8 rx5                     |*                  ----['28.88', '29.55', '30.10', '30.64', '31.40']
+9 rx4                     |*                  ----['28.70', '29.47', '30.05', '30.57', '31.34']
+10 rx9                     |          *        ------['36.15', '38.55', '40.08', '41.73', '43.86']
+✅ pass:  sk
+🔆 {'pass': 11, 'fail': 0, 'success': 100.0}
