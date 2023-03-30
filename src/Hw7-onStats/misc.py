@@ -476,8 +476,8 @@ def delta(i, other):
     e, y, z= 1E-32, i, other
     return abs(y.mu - z.mu) / ((e + y.sd**2/y.n + z.sd**2/z.n)**.5)
 
-def bootstrap(y_val, z_val, NUM):
-    x, y, z, yhat, zhat = NUM(), NUM(), NUM(), [], []
+def bootstrap(y_val, z_val, Num):
+    x, y, z, yhat, zhat = Num(), Num(), Num(), [], []
 
     for y1 in y_val:
         x.add(y1)
@@ -498,8 +498,8 @@ def bootstrap(y_val, z_val, NUM):
     n = 0
 
     for loop in range(1, 1,the['bootstrap']+1):
-        val = NUM()
-        tmp = NUM()
+        val = Num()
+        tmp = Num()
 
         for y in samples(yhat).values():
             val.add(y)

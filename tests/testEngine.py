@@ -305,10 +305,10 @@ def pre_test():
         for j in range(1, 33):
             t1.append(misc.gaussian(10,1))
             t2.append(misc.gaussian(d*10, 1))
-            if d < 1.1:
-                tmp = True
-            print("\t",d,tmp,bootstrap(t1,t2, Num),bootstrap(t1,t1, Num))
-            d = d + 0.05
+        if d < 1.1:
+            tmp = True
+        print("\t",d,tmp,bootstrap(t1,t2, Num),bootstrap(t1,t1, Num))
+        d = d + 0.05
 
 def five_test():
     for rx in tiles(scottKnot(
