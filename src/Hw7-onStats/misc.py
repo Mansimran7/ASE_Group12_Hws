@@ -5,6 +5,7 @@ import random
 import re
 import sys
 import copy
+from num_class import Num
 from copy import deepcopy
 import json
 from utils import *
@@ -251,17 +252,13 @@ def bin(col,x):
     tmp = (col.hi - col.lo)/(the['bins'] - 1)
     return  1 if col.hi == col.lo else math.floor(x/tmp + 0.5)*tmp
 
-def merge(col1,col2):
-  new = deepcopy(col1)
-  if isinstance(col1, Sym):
-      for n in col2.has:
-        new.add(n)
-  else:
-    for n in col2.has:
-        new.add(new,n)
-    new.lo = min(col1.lo, col2.lo)
-    new.hi = max(col1.hi, col2.hi) 
-  return new
+def merge(rx1,rx2):
+    
+    rx3 = RX([], rx1['name'])
+    rx3['has'] = rx1['has'] + rx2['has']
+    rx3['has'] = sorted(rx3['has'])
+    rx3['n'] = len(rx3['has'])
+    return rx3
 
 def RANGE(at,txt,lo,hi=None):
     return {'at':at,'txt':txt,'lo':lo,'hi':lo or hi or lo,'y':Sym()}
@@ -375,7 +372,7 @@ def mid(temp):
     if len(t)%2==0:
         return (t[n] +t[n+1])/2
     else:
-        t[n+1]
+        return t[n+1]
 
 def div(temp):
     t= temp['has'] if temp['has'] else temp
@@ -395,7 +392,7 @@ def scottKnot(rxs, NUM):
         lower_value = merges(low, cut)
         higher_value = merges(cut+1, high)
 
-        return cliffsDelta (lower_value['has'], higher_value['has']) and bootstrap(lower_value['has'], higher_value['has'])
+        return cliffsDelta (lower_value['has'], higher_value['has']) and bootstrap(lower_value['has'], higher_value['has'], Num)
 
     def recurse(low, high, rank):
         before = merges(low, high)
@@ -422,7 +419,7 @@ def scottKnot(rxs, NUM):
         return rank
     
     rxs = rxs_sort(rxs)
-    cohen = div(merge(0, len(rxs)-1)) * the['cohen']
+    cohen = div(merges(0, len(rxs)-1)) * the['cohen']
     recurse(0, len(rxs)-1, 1)
 
     return rxs
@@ -432,7 +429,7 @@ def rxs_sort(rxs):
     for loop_i, x in enumerate(rxs):
         for loop_j, y in enumerate(rxs):
             if mid(x) < mid(y):
-                rxs[j],rxs[i]=rxs[i],rxs[j]
+                rxs[loop_j],rxs[loop_i]=rxs[loop_i],rxs[loop_j]
     return rxs
 
 def tiles(rxs):
@@ -447,12 +444,12 @@ def tiles(rxs):
         tmp, u = rx['has'], []
         
         def at(x):
-            return t[of(len(t)*x//1, len(t))]
+            return tmp[of(len(tmp)*x//1, len(tmp))]
         def of(x,most):
             return int(max(0, min(most, x)))
 
         def pos(x):
-            return math.floor(of(the['width']*(x-lo)/(hi-lo+1E-32)//1, the['width']))
+            return math.floor(of(the['width']*(x-low)/(high-low+1E-32)//1, the['width']))
 
         for loop in range(1, the['width']+1):
             u.append(" ")
@@ -461,11 +458,10 @@ def tiles(rxs):
         A,B,C,D,E= pos(a), pos(b), pos(c), pos(d), pos(e)
 
         for loop_i in range(A, B+1):
-            u[loop_i] = "-"
+            u.append("-")
         
         for loop_i in range(D, E+1):
-            u[loop_i] = "-"
-        
+            u.append("-")        
         u[the['width']//2] = "|" 
         u[C] = "*"
         x = []
